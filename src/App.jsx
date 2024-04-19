@@ -1,4 +1,4 @@
-import AppBarComponent from './components/AppBarComponent'
+import AppBarComponent from './components/AppBarComponent/AppBarComponent'
 import SectionHome from './views/landingPage/SectionHome'
 import SectionRegisterLogin from './views/landingPage/SectionRegisterLogin'
 
