@@ -27,7 +27,7 @@ function AppBarComponent() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: '#e20001'}}>
+    <AppBar position="static" sx={{backgroundColor: '#e20001', height: '20vh'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
