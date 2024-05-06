@@ -50,3 +50,28 @@
     font-weight: 700;
     font-style: normal;
 }
+
+.btn {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    border-radius: 25px;
+    height: 40px;
+    width: 300px;
+    border-style: none;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.input-form {
+    font-family: "Poppins", sans-serif;
+    height: 40px;
+    width: 250px;
+    margin: 3px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 2px solid #dcdcdc;
+}
