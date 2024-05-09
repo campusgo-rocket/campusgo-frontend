@@ -14,9 +14,10 @@ h1 {
 }
 
 .mi-componente {
+    font-family: "Poppins", sans-serif;
     position: relative; /* Para posicionar el fondo y el contenido correctamente */
     border-radius: 56px; /* Bordes redondeados */
-    width: 400px; /* Ancho del componente */
+    width: 500px; /* Ancho del componente */
     height: 200px; /* Alto del componente */
     margin: auto;
     background-color: red;

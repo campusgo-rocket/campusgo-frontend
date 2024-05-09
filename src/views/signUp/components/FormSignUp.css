@@ -12,6 +12,12 @@ button, a {
     color: var(--primary-color);
 }
 
+@media (min-width: 968px) {
+    .card-form {
+        margin-top: 50px !important;
+    }
+}
+
 .card-form {
     background-color: var(--white-color);
     margin-top: 20px;

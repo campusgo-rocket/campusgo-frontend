@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Button, Container, DialogActions, DialogContent, DialogContentText, FormControl, Grid } from "@mui/material"
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import { postUser } from './../../../services/authService'
-import './FormSignUp.css'
 import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
+import { postUser } from './../../../services/authService';
+import ImagePortrait from '../../../assets/images/fondo_registro.png';
+import './FormSignUp.css';
 
 function FormSignUp() {
 
@@ -81,6 +82,10 @@ function FormSignUp() {
         navigate('/profile');
     }
 
+    const handleLogin = () => {
+        navigate('/login');
+    }
+
     return(
         <Container>
             {!isLoading &&
@@ -134,7 +139,7 @@ function FormSignUp() {
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={12}>
                                         <br></br>
-                                        <span>¿Ya tienes cuenta? <a href="login"><b>Inicia sesión</b></a></span>
+                                        <span>¿Ya tienes cuenta? <a onClick={handleLogin}><b>Inicia sesión</b></a></span>
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={12}>
                                         <button className="btn btn-primary" type="submit" onClick={saveUser}>Registrarse</button>
@@ -142,6 +147,9 @@ function FormSignUp() {
                                     
                                 </Grid>
                             </div>
+                        </Grid>
+                        <Grid item md={4} display={{ xs: 'none', sm: 'none', md: 'block' }}>
+                            <img src={ImagePortrait}></img>
                         </Grid>
                     </Grid>
                 </FormControl>
