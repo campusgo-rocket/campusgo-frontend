@@ -1,0 +1,32 @@
+@import url('../../../App.css');
+
+body {
+    background-color: #F1F1F1;
+}
+
+button, a {
+    cursor: pointer;
+}
+
+.title-form {
+    color: var(--primary-color);
+}
+
+@media (min-width: 968px) {
+    .card-form {
+        margin-top: 50px !important;
+    }
+}
+
+.card-form {
+    background-color: var(--white-color);
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+#alert-dialog-title, #alert-dialog-description {
+    font-family: "Poppins", sans-serif;
+}

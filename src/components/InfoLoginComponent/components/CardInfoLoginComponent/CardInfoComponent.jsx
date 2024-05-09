@@ -1,10 +1,18 @@
 import React from 'react'
 import { SvgIcon, Box, Typography} from '@mui/material'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import { useNavigate } from 'react-router-dom';
 import '../../InfoLoginComponent.css'
 
 
 function CardInfoComponent({userObject}) {
+
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate('/signup');
+    }
+
   return (
     userObject ? 
         <Box className="mi-componente">
@@ -27,7 +35,7 @@ function CardInfoComponent({userObject}) {
                         }    
                     </Box>
                     <Box mt={2}>
-                        <Typography>¿Aún no te registras? <em><strong>Hazlo ahora!</strong></em></Typography>
+                        <Typography>¿Aún no te registras? <em><strong><a onClick={handleNavigate}>Hazlo ahora!</a></strong></em></Typography>
                     </Box>
                 </Box>    
             </Box>

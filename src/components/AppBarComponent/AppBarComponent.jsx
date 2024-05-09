@@ -27,14 +27,14 @@ function AppBarComponent() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: '#e20001', height: '20vh'}}>
+    <AppBar position="static" sx={{backgroundColor: '#e20001', height: '12vh'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
