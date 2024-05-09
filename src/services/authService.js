@@ -1,19 +1,14 @@
+import axios from 'axios';
+
 export const postUser = async (user) => {
     try {
-        const response = await fetch('BASEURL', {
-            method: 'POST',
+        const response = await axios.post('http://localhost:3000/auth/signup', user, {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(user),
         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        return data;
+        return response.data;
     } catch (error) {
         console.error('Error posting user: ', error);
         throw error;

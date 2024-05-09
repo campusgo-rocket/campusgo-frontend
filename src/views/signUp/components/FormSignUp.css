@@ -1,7 +1,7 @@
 @import url('../../../App.css');
 
 body {
-    background-color: beige;
+    background-color: #F1F1F1;
 }
 
 button, a {
@@ -19,4 +19,8 @@ button, a {
     padding: 20px;
     align-items: center;
     text-align: center;
+}
+
+#alert-dialog-title, #alert-dialog-description {
+    font-family: "Poppins", sans-serif;
 }

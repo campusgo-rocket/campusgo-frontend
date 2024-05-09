@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import React from "react";
 
-function SectionLogin() {
+function ProfileComponent() {
     return (
         <Container>
             <h1 className="poppins-light">HOLA, ME ENCUENTRO EN CONSTRUCCIÓN 👷‍♂️</h1>
@@ -9,4 +9,4 @@ function SectionLogin() {
     )
 }
 
-export default SectionLogin;
+export { ProfileComponent };
