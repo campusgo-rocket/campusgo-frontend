@@ -1,8 +1,9 @@
 import React from 'react'
+import InfoLoginComponent from '../../components/InfoLoginComponent/InfoLoginComponent'
 
 function SectionRegisterLogin() {
   return (
-    <div>SectionRegisterLogin</div>
+    <InfoLoginComponent/>
   )
 }
 
