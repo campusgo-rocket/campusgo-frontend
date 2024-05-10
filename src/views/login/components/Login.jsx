@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { FormControl, Grid } from "@mui/material";
-import { postUser } from "./../../../services/authService";
 import driverSignup from "./../../../assets/images/driver-signup.png";
+import { useNavigate } from "react-router-dom";
 
-function FormSignUp() {
-  const [email, setEmail] = useState("");
+function Login() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
 
   const handleChangeEmail = (e) => {
@@ -84,4 +84,4 @@ function FormSignUp() {
   );
 }
 
-export default FormSignUp;
+export default Login;
