@@ -1,0 +1,76 @@
+@import url('../../../App.css');
+
+body {
+    background-color: beige;
+}
+
+button, a {
+    cursor: pointer;
+}
+
+.title-form {
+    color: var(--primary-color);
+}
+
+.card-form {
+    background-color: var(--white-color);
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 40px;
+    align-items: start;
+    text-align: start;
+
+}
+
+
+.imageDriverRegister {
+    width: 98%;
+    height: 100%;
+}
+
+.divImageContainer{
+    display: flex;
+    padding-left: 5%;
+}
+
+.input-form-email {
+    font-family: "Poppins", sans-serif;
+    height: 40px;
+    width: 80%;
+    margin: 3px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 2px solid #dcdcdc;
+}
+
+.input-form-lg {
+    font-family: "Poppins", sans-serif;
+    height: 40px;
+    width: 80%;
+    margin: 3px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 2px solid #dcdcdc;
+}
+
+.div-bt{
+    display: flex;
+    justify-content: center;
+}
+
+.card-file {
+
+    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+    background-color: var(--bg-color);
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 1%;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    margin-top: 5px; /* Ajusta el espacio entre el texto y la línea */
+  }
