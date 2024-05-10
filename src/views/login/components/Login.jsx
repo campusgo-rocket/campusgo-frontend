@@ -5,13 +5,8 @@ import { postUser } from "./../../../services/authService";
 import driverSignup from "./../../../assets/images/driver-signup.png";
 
 function FormSignUp() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [idUser, setIdUser] = useState(0);
-  const [typeUser, setTypeUser] = useState("passenger");
-  const [documentType, setDocumentType] = useState("CC");
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -21,22 +16,22 @@ function FormSignUp() {
     setPassword(e.target.value);
   };
 
-  const handleChangeIdUser = (e) => {
-    setIdUser(e.target.value);
-  };
+  const handleSignup = () => {
+    navigate("/signup");
+  };
 
   const saveUser = () => {
     let user = {
       email: email,
       password: password,
     };
-    postUser(user)
+    /*postUser(user)
       .then((res) => {
         console.log(res);
       })
       .catch((error) => {
         console.log(error);
-      });
+      });*/
   };
 
   return (
@@ -65,10 +60,10 @@ function FormSignUp() {
             <Grid item xs={12} sm={12} md={12}>
               <span>
                 ¿Aún no te registras?{" "}
-                <a href="signup">
+                <a onClick={handleSignup}>
                   <b>¡Hazlo ahora!</b>
                 </a>
-              </span>
+              </span>
             </Grid>
             <Grid item xs={12} sm={12} md={12}>
               <div className="div-bt">
