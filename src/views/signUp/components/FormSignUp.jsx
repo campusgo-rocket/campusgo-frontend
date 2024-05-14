@@ -4,7 +4,7 @@ import { Button, Container, DialogActions, DialogContent, DialogContentText, For
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
-import { postUser } from './../../../services/authService';
+import { postUser, postDriver, postPassenger } from './../../../services/authService';
 import ImagePortrait from '../../../assets/images/fondo_registro.png';
 import './FormSignUp.css';
 
@@ -14,7 +14,7 @@ function FormSignUp() {
 
     const navigate = useNavigate();
 
-    const { userType } = useUser();
+    const { setUid, userType } = useUser();
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -75,23 +75,45 @@ function FormSignUp() {
         setPhoneNumber(e.target.value);
     }
 
-    const saveUser = () => {
+    const saveUser = (e) => {
+        e.preventDefault();
         setIsLoading(true);
         let user = {
             first_name: firstName,
             last_name: lastName,
             email: email,
             password: password,
-            id_user: idUser,
-            type: typeUser,
+            document_number: idUser,
             document_type: documentType,
             address: address,
-            phone_number: phoneNumber
+            phone_number: phoneNumber,
+            url_profile_photo: 'none'
         }
         postUser(user)
-            .then(() => {
-                setIsLoading(false);
-                setIsSuccess(true);
+            .then((res) => {
+                setUid(res.uid);
+                localStorage.setItem('uid', res.uid);
+                if (typeUser === 'driver') {
+                    postDriver({ uid: res.uid })
+                    .then(() => {
+                        setIsLoading(false);
+                        setIsSuccess(true);
+                    })
+                    .catch(() => {
+                        setIsLoading(false);
+                        setIsError(true);
+                    })
+                } else if (typeUser === 'passenger') {
+                    postPassenger({ uid: res.uid })
+                    .then(() => {
+                        setIsLoading(false);
+                        setIsSuccess(true);
+                    })
+                    .catch(() => {
+                        setIsLoading(false);
+                        setIsError(true);
+                    })
+                }
             })
             .catch(() => {
                 setIsLoading(false);
@@ -104,7 +126,11 @@ function FormSignUp() {
     }
 
     const handleCreatedUser = () => {
-        navigate('/profile');
+        navigate('/passenger/profile');
+    }
+
+    const handleCreatedDriver = () => {
+        navigate('/driver/vehicle');
     }
 
     const handleLogin = () => {
@@ -159,7 +185,7 @@ function FormSignUp() {
                                     <span>¿Ya tienes cuenta? <a onClick={handleLogin}><b>Inicia sesión</b></a></span>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
-                                    <button className="btn btn-primary" type="submit" onClick={saveUser}>{ typeUser === 'passenger' ? 'Registrarse' : 'Registrar vehículo'}</button>
+                                    <button className="btn btn-primary" type="submit" onClick={(e) => saveUser(e)}>{ typeUser === 'passenger' ? 'Registrarse' : 'Registrar vehículo'}</button>
                                 </Grid>
                             </Grid>
                         </FormControl>
@@ -195,7 +221,7 @@ function FormSignUp() {
                     </DialogActions>
                 </Dialog>
             }
-            {!isLoading && isSuccess &&
+            {!isLoading && isSuccess && typeUser === 'passenger' &&
                 <Dialog
                     open={isSuccess}
                     onClose={handleCreatedUser}
@@ -207,11 +233,33 @@ function FormSignUp() {
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Felicitaciones {firstName}, ahora podrás hacer uso de nuestro servicio de transporte universitario.
+                            Felicitaciones {firstName}, haz creado tu cuenta, ahora podrás hacer uso de nuestro servicio de transporte universitario.
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleCreatedUser} style={{ color: "red" }} autoFocus>
+                            CONTINUAR
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            }
+            {!isLoading && isSuccess && typeUser === 'driver' &&
+                <Dialog
+                    open={isSuccess}
+                    onClose={handleCreatedDriver}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">
+                        {"Cool! El usuario ha sido creado con éxito."}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Felicitaciones {firstName}, haz creado tu cuenta, ahora por favor registra la información de tu vehículo.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCreatedDriver} style={{ color: "red" }} autoFocus>
                             CONTINUAR
                         </Button>
                     </DialogActions>

@@ -7,7 +7,10 @@ export function useUser() {
 }
 
 export function UserProvider({ children }) {
-    const [uid, setUid] = useState(null);
+    const [uid, setUid] = useState(() => {
+        const storedUID = localStorage.getItem('uid');
+        return storedUID ? storedUID : '';
+    });
     const [userType, setUserType] = useState(() => {
         const storedUserType = localStorage.getItem('userType');
         return storedUserType ? storedUserType : '';
