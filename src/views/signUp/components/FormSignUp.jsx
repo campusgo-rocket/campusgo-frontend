@@ -33,9 +33,11 @@ function FormSignUp() {
 
     useEffect(() => {
         if (userType === 'passenger') {
+            localStorage.setItem('userType', 'passenger');
             setTypeUser('passenger');
             setTypeUserSpanish('Pasajero');
         } else if (userType === 'driver') {
+            localStorage.setItem('userType', 'driver');
             setTypeUser('driver');
             setTypeUserSpanish('Conductor');
         }

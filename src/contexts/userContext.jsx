@@ -7,13 +7,16 @@ export function useUser() {
 }
 
 export function UserProvider({ children }) {
-    const [user, setUser] = useState(null);
-    const [userType, setUserType] = useState('');
+    const [uid, setUid] = useState(null);
+    const [userType, setUserType] = useState(() => {
+        const storedUserType = localStorage.getItem('userType');
+        return storedUserType ? storedUserType : '';
+    });
 
     return (
         <UserContext.Provider value={{
-            user,
-            setUser,
+            uid,
+            setUid,
             userType,
             setUserType
         }}>
