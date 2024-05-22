@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
 import { postUser, postDriver, postPassenger } from './../../../services/authService';
-import ImagePortrait from '../../../assets/images/fondo_registro.png';
+import ImagePortrait from '../../../assets/images/fondo-registro-vehiculo.png';
 import './FormVehicle.css';
 
 import { useUser } from "../../../contexts/userContext";
@@ -16,14 +16,13 @@ function FormSignUp() {
 
     const { setUid, userType } = useUser();
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [nombrePropietario, setnombrePropietario] = useState('');
+    const [marca, setMarca] = useState('');
+    const [modelo, setModelo] = useState('');
+    const [year, setYear] = useState('');
     const [idUser, setIdUser] = useState(0);
     const [documentType, setDocumentType] = useState('CC');
-    const [address, setAddress] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState(0);
+    const [color, setColor] = useState('');
     const [typeUser, setTypeUser] = useState('');
     const [typeUserSpanish, setTypeUserSpanish] = useState('');
 
@@ -43,20 +42,20 @@ function FormSignUp() {
         }
     }, [userType]);
 
-    const handleChangeFirstName = (e) => {
-        setFirstName(e.target.value);
+    const handleChangeNombrePropietario = (e) => {
+        setnombrePropietario(e.target.value);
     }
 
-    const handleChangeLastName = (e) => {
-        setLastName(e.target.value);
+    const handleChangeMarca = (e) => {
+        setMarca(e.target.value);
     }
 
-    const handleChangeEmail = (e) => {
-        setEmail(e.target.value);
+    const handleChangeModelo = (e) => {
+        setModelo(e.target.value);
     }
 
-    const handleChangePassword = (e) => {
-        setPassword(e.target.value);
+    const handleChangeYear = (e) => {
+        setYear(e.target.value);
     }
 
     const handleChangeIdUser = (e) => {
@@ -67,12 +66,8 @@ function FormSignUp() {
         setDocumentType(e.target.value);
     }
 
-    const handleChangeAddress = (e) => {
-        setAddress(e.target.value);
-    }
-    
-    const handleChangePhoneNumber = (e) => {
-        setPhoneNumber(e.target.value);
+    const handleChangeColor = (e) => {
+        setColor(e.target.value);
     }
 
     const saveUser = (e) => {
@@ -148,16 +143,16 @@ function FormSignUp() {
                                     <h2 className="title-form">Registro de vehículo</h2>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeFirstName} placeholder="Marca del vehículo"></input>
+                                    <input className="input-form" onChange={handleChangeMarca} placeholder="Marca del vehículo"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeLastName} placeholder="Modelo del vehículo"></input>
+                                    <input className="input-form" onChange={handleChangeModelo} placeholder="Modelo del vehículo"></input>
                                 </Grid>    
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangePassword} placeholder="Año del vehículo"></input>
+                                    <input className="input-form" onChange={handleChangeYear} placeholder="Año del vehículo"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangePhoneNumber} placeholder="Color del vehículo"></input>
+                                    <input className="input-form" onChange={handleChangeColor} placeholder="Color del vehículo"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <select
@@ -175,14 +170,10 @@ function FormSignUp() {
                                     <input className="input-form" onChange={handleChangeIdUser} placeholder="Número de documento del propietario"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeEmail} placeholder="Nombre del propietario"></input>
+                                    <input className="input-form" onChange={handleChangeNombrePropietario} placeholder="Nombre del propietario"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeAddress} placeholder="Placa del vehículo"></input>
-                                </Grid>
-                                <Grid item xs={12} sm={12} md={12}>
-                                    <br></br>
-                                    <span>¿Ya tienes cuenta? <a onClick={handleLogin}><b>Inicia sesión</b></a></span>
+                                    <input className="input-form" onChange={handleChangePlaca} placeholder="Placa del vehículo"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
                                     <button className="btn btn-primary" type="submit" onClick={(e) => saveUser(e)}>{ typeUser === 'passenger' ? 'Registrarse' : 'Registrar vehículo'}</button>
