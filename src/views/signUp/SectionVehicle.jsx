@@ -1,4 +1,5 @@
 import React from "react";
+import FormVehicle from "./componentsVehicle/FormVehicle";
 
 import { useUser } from "../../contexts/userContext";
 
@@ -17,6 +18,11 @@ function SectionVehicle() {
     }
 
     return (
+
+        <>
+            <FormVehicle />
+        </>
+/*
         <>
             <p>Section Vehicle: {uid}</p>
             <p>Ejemplo ID driver: {data.id_driver}</p>
@@ -26,7 +32,7 @@ function SectionVehicle() {
             <p>Ejemplo número de placa: {data.plate_number}</p>
             <p>Ejemplo tipo de vehículo: {data.type_vehicle}</p>
             <p>Ejemplo año: {data.year}</p>
-        </>
+        </>*/
     )
 }
 
