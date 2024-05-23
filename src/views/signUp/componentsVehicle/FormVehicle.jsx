@@ -9,106 +9,76 @@ import ImagePortrait from '../../../assets/images/fondo-registro-vehiculo.png';
 import './FormVehicle.css';
 
 import { useUser } from "../../../contexts/userContext";
+import { postVehicle } from "../../../services/vehicleService";
 
 function FormSignUp() {
 
     const navigate = useNavigate();
 
-    const { setUid, userType } = useUser();
-
-    const [nombrePropietario, setnombrePropietario] = useState('');
-    const [marca, setMarca] = useState('');
-    const [modelo, setModelo] = useState('');
+    const [model, setModel] = useState('');
+    const [make, setMake] = useState('');
     const [year, setYear] = useState('');
-    const [idUser, setIdUser] = useState(0);
-    const [documentType, setDocumentType] = useState('CC');
+    const [idDriver, setIdDriver] = useState("vSlY7KpNsHKuV1qrri70");
+    const [plateNumber, setPlateNumber] = useState('');
+    const [typeVehicle, setVehicleType] = useState('Carro');
     const [color, setColor] = useState('');
-    const [typeUser, setTypeUser] = useState('');
-    const [typeUserSpanish, setTypeUserSpanish] = useState('');
-
+    
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
-        if (userType === 'passenger') {
-            localStorage.setItem('userType', 'passenger');
-            setTypeUser('passenger');
-            setTypeUserSpanish('Pasajero');
-        } else if (userType === 'driver') {
-            localStorage.setItem('userType', 'driver');
-            setTypeUser('driver');
-            setTypeUserSpanish('Conductor');
-        }
-    }, [userType]);
+        
+    }, []);
 
-    const handleChangeNombrePropietario = (e) => {
-        setnombrePropietario(e.target.value);
+    const handleChangePlateNumber = (e) => {
+        setPlateNumber(e.target.value);
     }
 
-    const handleChangeMarca = (e) => {
-        setMarca(e.target.value);
+    const handleChangeMake = (e) => {
+        setMake(e.target.value);
     }
 
-    const handleChangeModelo = (e) => {
-        setModelo(e.target.value);
+    const handleChangeModel = (e) => {
+        setModel(e.target.value);
     }
 
     const handleChangeYear = (e) => {
         setYear(e.target.value);
     }
 
-    const handleChangeIdUser = (e) => {
-        setIdUser(e.target.value);
+    const handleChangeIdDriver = (e) => {
+        setIdDriver(e.target.value);
     }
 
-    const handleChangeDocumentType = (e) => {
-        setDocumentType(e.target.value);
+    const handleChangeVehicleType = (e) => {
+        setVehicleType(e.target.value);
     }
 
     const handleChangeColor = (e) => {
         setColor(e.target.value);
     }
 
-    const saveUser = (e) => {
+    const handleCreatedVehicle = (e) => {
+        navigate("/driver/profile");
+    }
+
+    const saveVehicle = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        let user = {
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            password: password,
-            document_number: idUser,
-            document_type: documentType,
-            address: address,
-            phone_number: phoneNumber,
-            url_profile_photo: 'none'
+        let vehicle = {
+            color: color,
+            make: make,
+            model: model,
+            year: year,
+            plate_number: plateNumber,
+            id_driver: idDriver,
+            type_vehicle: typeVehicle
         }
-        postUser(user)
+        postVehicle(vehicle)
             .then((res) => {
-                setUid(res.uid);
-                localStorage.setItem('uid', res.uid);
-                if (typeUser === 'driver') {
-                    postDriver({ uid: res.uid })
-                    .then(() => {
-                        setIsLoading(false);
-                        setIsSuccess(true);
-                    })
-                    .catch(() => {
-                        setIsLoading(false);
-                        setIsError(true);
-                    })
-                } else if (typeUser === 'passenger') {
-                    postPassenger({ uid: res.uid })
-                    .then(() => {
-                        setIsLoading(false);
-                        setIsSuccess(true);
-                    })
-                    .catch(() => {
-                        setIsLoading(false);
-                        setIsError(true);
-                    })
-                }
+                setIsLoading(false);
+                setIsSuccess(true);
             })
             .catch(() => {
                 setIsLoading(false);
@@ -118,18 +88,6 @@ function FormSignUp() {
 
     const handleClose = () => {
         setIsError(false);
-    }
-
-    const handleCreatedUser = () => {
-        navigate('/passenger/profile');
-    }
-
-    const handleCreatedDriver = () => {
-        navigate('/driver/vehicle');
-    }
-
-    const handleLogin = () => {
-        navigate('/login');
     }
 
     return (
@@ -143,10 +101,10 @@ function FormSignUp() {
                                     <h2 className="title-form">Registro de vehículo</h2>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeMarca} placeholder="Marca del vehículo"></input>
+                                    <input className="input-form" onChange={handleChangeMake} placeholder="Marca del vehículo"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeModelo} placeholder="Modelo del vehículo"></input>
+                                    <input className="input-form" onChange={handleChangeModel} placeholder="Modelo del vehículo"></input>
                                 </Grid>    
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input className="input-form" onChange={handleChangeYear} placeholder="Año del vehículo"></input>
@@ -158,25 +116,19 @@ function FormSignUp() {
                                     <select
                                         className="input-form"
                                         style={{ height: 50, width: 298 }}
-                                        onChange={handleChangeDocumentType}
-                                        value={documentType}
-                                        name="document_type" id="document_type"
+                                        onChange={handleChangeVehicleType}
+                                        value={typeVehicle}
+                                        name="type_vehicle" id="type_vehicle"
                                     >
-                                        <option value="CC">Cédula de ciudadanía</option>
-                                        <option value="TI">Tarjeta de identidad</option>
+                                        <option value="carro">Carro</option>
+                                        <option value="moto">Moto</option>
                                     </select>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeIdUser} placeholder="Número de documento del propietario"></input>
-                                </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeNombrePropietario} placeholder="Nombre del propietario"></input>
-                                </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangePlaca} placeholder="Placa del vehículo"></input>
+                                    <input className="input-form" onChange={handleChangePlateNumber} placeholder="Placa del vehículo"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
-                                    <button className="btn btn-primary" type="submit" onClick={(e) => saveUser(e)}>{ typeUser === 'passenger' ? 'Registrarse' : 'Registrar vehículo'}</button>
+                                    <button className="btn btn-primary" type="submit" onClick={(e) => saveVehicle(e)}>Registrar vehículo</button>
                                 </Grid>
                             </Grid>
                         </FormControl>
@@ -198,7 +150,7 @@ function FormSignUp() {
                     aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">
-                        {"Opps! Error al crear el usuario."}
+                        {"Opps! Error al crear el vehículo."}
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
@@ -212,45 +164,23 @@ function FormSignUp() {
                     </DialogActions>
                 </Dialog>
             }
-            {!isLoading && isSuccess && typeUser === 'passenger' &&
+            {!isLoading && isSuccess &&
                 <Dialog
                     open={isSuccess}
-                    onClose={handleCreatedUser}
+                    onClose={handleCreatedVehicle}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">
-                        {"Cool! El usuario ha sido creado con éxito."}
+                        {"Cool! El vehículo ha sido creado con éxito."}
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Felicitaciones {firstName}, haz creado tu cuenta, ahora podrás hacer uso de nuestro servicio de transporte universitario.
+                            Felicitaciones, haz guardado con éxito los datos de tu vehículo.
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleCreatedUser} style={{ color: "red" }} autoFocus>
-                            CONTINUAR
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            }
-            {!isLoading && isSuccess && typeUser === 'driver' &&
-                <Dialog
-                    open={isSuccess}
-                    onClose={handleCreatedDriver}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">
-                        {"Cool! El usuario ha sido creado con éxito."}
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Felicitaciones {firstName}, haz creado tu cuenta, ahora por favor registra la información de tu vehículo.
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleCreatedDriver} style={{ color: "red" }} autoFocus>
+                        <Button onClick={handleCreatedVehicle} style={{ color: "red" }} autoFocus>
                             CONTINUAR
                         </Button>
                     </DialogActions>
