@@ -50,7 +50,7 @@ export const signIn = async (user) => {
       const idToken = await loggedInUser.getIdToken();
       console.log(userCredential);
       // Envía el token de ID al backend
-      const response = await fetch("http://localhost:3000/api/auth/verifyToken", {
+      const response = await fetch("https://campusgo-backend-kappa.vercel.app/api/auth/verifyToken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

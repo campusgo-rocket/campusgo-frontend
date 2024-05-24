@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { FormControl, Grid } from "@mui/material";
 import driverSignup from "./../../../assets/images/driver-signup.png";
+import {
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  FormControl,
+  Grid,
+} from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
 import { signIn as AuthenticateUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +22,7 @@ function Login() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -25,6 +36,14 @@ function Login() {
     navigate("/signup");
   };
 
+  const handleCreatedUser = () => {
+    navigate("/profile");
+  };
+
+  const handleClose = () => {
+    setIsError(false);
+  };
+
   const signIn = (e) => {
     setIsLoading(true);
     let user = {
@@ -33,9 +52,15 @@ function Login() {
     };
     AuthenticateUser(user)
       .then((res) => {
-        localStorage.setItem("token", res);
+        console.log(res);
+        if (res !== undefined) {
+          localStorage.setItem("token", res);
+          setIsSuccess(true);
+        } else {
+          setIsError(true);
+          setIsSuccess(false);
+        }
         setIsLoading(false);
-        setIsSuccess(true);
       })
       .catch(() => {
         setIsLoading(false);
@@ -88,6 +113,55 @@ function Login() {
           </Grid>
         </div>
       </FormControl>
+      {isLoading && <LoadingComponent color="inherit" />}
+      {!isLoading && isError && (
+        <Dialog
+          open={isError}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Opps! Algo ha salido mal."}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Por favor verifica la información y vuelve a intentarlo.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} style={{ color: "red" }} autoFocus>
+              CERRAR
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
+      {!isLoading && isSuccess && (
+        <Dialog
+          open={isSuccess}
+          onClose={handleCreatedUser}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Cool! Iniciaste sesión sin problemas."}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Ahora vamos a hacer un recorrido!
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleCreatedUser}
+              style={{ color: "red" }}
+              autoFocus
+            >
+              CONTINUAR
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
       <img src={driverSignup} className="imageDriverRegister" />
     </div>
   );
