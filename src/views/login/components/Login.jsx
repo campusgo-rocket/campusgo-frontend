@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import "./Login.css";
 import { FormControl, Grid } from "@mui/material";
 import driverSignup from "./../../../assets/images/driver-signup.png";
+import { signIn as AuthenticateUser } from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -18,20 +23,24 @@ function Login() {
 
   const handleSignup = () => {
     navigate("/signup");
-  };
+  };
 
-  const saveUser = () => {
+  const signIn = (e) => {
+    setIsLoading(true);
     let user = {
       email: email,
       password: password,
     };
-    /*postUser(user)
+    AuthenticateUser(user)
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("token", res);
+        setIsLoading(false);
+        setIsSuccess(true);
       })
-      .catch((error) => {
-        console.log(error);
-      });*/
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
+      });
   };
 
   return (
@@ -63,16 +72,16 @@ function Login() {
                 <a onClick={handleSignup}>
                   <b>¡Hazlo ahora!</b>
                 </a>
-              </span>
+              </span>
             </Grid>
             <Grid item xs={12} sm={12} md={12}>
               <div className="div-bt">
                 <button
                   className="btn btn-primary"
                   type="submit"
-                  onClick={saveUser}
+                  onClick={signIn}
                 >
-                  Iniciar sesión
+                  {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
                 </button>
               </div>
             </Grid>
