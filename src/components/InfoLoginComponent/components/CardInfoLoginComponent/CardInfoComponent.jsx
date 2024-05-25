@@ -5,13 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../InfoLoginComponent.css'
 
 
-function CardInfoComponent({userObject}) {
-
-    const navigate = useNavigate();
-
-    const handleNavigate = () => {
-        navigate('/signup');
-    }
+function CardInfoComponent({userObject, handleNavidate }) {
 
   return (
     userObject ? 
@@ -35,7 +29,7 @@ function CardInfoComponent({userObject}) {
                         }    
                     </Box>
                     <Box mt={2}>
-                        <Typography>¿Aún no te registras? <em><strong><a onClick={handleNavigate}>Hazlo ahora!</a></strong></em></Typography>
+                        <Typography>¿Aún no te registras? <em><strong><a onClick={handleNavidate}>Hazlo ahora!</a></strong></em></Typography>
                     </Box>
                 </Box>    
             </Box>

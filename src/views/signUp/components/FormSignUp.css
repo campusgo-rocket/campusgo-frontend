@@ -12,10 +12,10 @@ button, a {
     color: var(--primary-color);
 }
 
-@media (min-width: 968px) {
-    .card-form {
-        margin-top: 50px !important;
-    }
+.container-child-singup {
+    align-items: center;
+    text-align: center;
+    margin-left: 50px;
 }
 
 .card-form {
@@ -23,10 +23,34 @@ button, a {
     margin-top: 20px;
     border-radius: 20px;
     padding: 20px;
-    align-items: center;
-    text-align: center;
+    height: 600px;
 }
 
 #alert-dialog-title, #alert-dialog-description {
     font-family: "Poppins", sans-serif;
+}
+
+.img-register {
+    bottom: 0;
+    right: 0;
+    width: 900px;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 968px) {
+    .card-form {
+        margin-top: 50px !important;
+        max-width: 700px;
+        height: 480px;
+    }
+}
+
+@media (max-width: 967px) {
+    .card-form {
+        margin-top: 50px !important;
+        max-width: 700px;
+        height: 650px;
+        margin-bottom: 80px !important;
+    }
 }
