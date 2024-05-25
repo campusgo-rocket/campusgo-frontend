@@ -1,0 +1,26 @@
+@import url('./../../App.css');
+
+h1 {
+    font-weight: 900;
+    align-items: center;
+}
+
+.container-child-info {
+    padding-left: var(--margin-extra-large);
+    padding-right: var(--margin-extra-large);
+    padding-bottom: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Establece la mitad del alto de la pantalla */
+}
+
+
+.container-info {
+    background-color: var(--primary-color);
+    background-image: url('src/assets/images/backgroundAbout.png');
+    background-size: cover; /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    color: var(--primary-color); /* Asegúrate de que el texto sea visible sobre la imagen de fondo */
+}
