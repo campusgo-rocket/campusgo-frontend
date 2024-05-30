@@ -12,16 +12,19 @@ import locationIcon from './../../assets/images/ubicacion.png';
 
 function InfoHome() {
     return (  
-        <Container maxWidth="xl" className='container-home poppins-light' sx={{height: '82vh'}}>
-    <Grid container spacing={1} className='container-child-info'>
+        <Container maxWidth="xl" className='container-home poppins-light'>
+    <Grid container spacing={3} className='container-child-info info-cards-container' sx={{ height: '100%' }}>
+
+
+
         <Grid item xs={12}>
-            <h1>Viaja seguro, viaja tranquilo</h1>
+            <h1 className="info-heading">Viaja seguro, viaja tranquilo</h1>
         </Grid>
         <Grid item xs={12} sm={4}>
-            <Card className="info-card">
+            <Card className='info-card'>
                 <CardContent>
                     <div className="info-icon" style={{ backgroundImage: `url(${sosIcon})` }} />
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" sx={{ marginTop: '20%' }}>
                         Fácil acceso al botón de SOS para alertar a tus contactos de confianza y al 123.
                     </Typography>
                 </CardContent>
@@ -31,7 +34,7 @@ function InfoHome() {
             <Card className="info-card">
                 <CardContent>
                     <div className="info-icon" style={{ backgroundImage: `url(${universityIcon})` }} />
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" sx={{ marginTop: '20%' }}>
                         Todos los usuarios deben verificar que son estudiantes antes de acceder a cualquier servicio.
                     </Typography>
                 </CardContent>
@@ -39,9 +42,9 @@ function InfoHome() {
         </Grid>
         <Grid item xs={12} sm={4}>
             <Card className="info-card">
-                <CardContent>
+                <CardContent >
                     <div className="info-icon" style={{ backgroundImage: `url(${locationIcon})` }} />
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" sx={{ marginTop: '20%' }}>
                         Comparte tu ubicación en tiempo real para que tus seres queridos puedan seguir tu ruta.
                     </Typography>
                 </CardContent>

@@ -10,11 +10,13 @@ function CardInfoComponent({userObject, handleNavidate }) {
   return (
     userObject ? 
         <Box className="mi-componente">
-            <Box className="fondo">
-                <Box className="contenido">
-                    <h2>{userObject.title}</h2>
+            <buttonCard onClick={handleNavidate} className="boton-imagen">
+                <Box className="fondo">
+                    <Box className="contenido">
+                        <h2>{userObject.title}</h2>
+                    </Box>
                 </Box>
-            </Box>
+            </buttonCard>
             <Box className="descripcion">
                 <h3>{userObject.subtitle}</h3>
                 <Box sx={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
