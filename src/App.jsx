@@ -6,7 +6,8 @@ import SectionRegisterLogin from './views/landingPage/SectionRegisterLogin'
 import SectionSignUp from './views/signUp/SectionSignUp'
 import { ProfileComponent } from './views/profile/components/Profile'
 import SectionLogin from './views/login/SectionLogin'
-import InfoHome from './components/HomeComponent/InfoHomeComponent'
+import InfoHome from './components/HomeComponent/Info Home/InfoHomeComponent'
+import TermsHome from './components/HomeComponent/Terms Home/HomeTermsComponent'
 import { FooterComponent } from './components/FooterComponent/FooterComponent'
 
 import { UserProvider } from './contexts/userContext'
@@ -23,6 +24,7 @@ function App() {
                 <SectionHome />
                 <SectionRegisterLogin />
                 <InfoHome/>
+                <TermsHome/>
               </>
             }>
             </Route>

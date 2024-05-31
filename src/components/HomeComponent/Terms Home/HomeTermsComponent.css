@@ -1,0 +1,147 @@
+.container-child-Terms{
+    padding-left: var(--margin-extra-large);
+    padding-right: var(--margin-extra-large);
+    color:var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10%;
+}
+
+.content-card{
+    background-color: var(--primary-color);
+    height: 250px;
+    padding-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente los elementos */
+    align-items: center
+}
+
+.Terms-heading {
+    font-weight:700;
+    font-size: 70px;
+    text-align: left;
+    margin-top: 5%; 
+    margin-bottom: 5%;
+}
+
+.Terms-secondary{
+    font-weight:500;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 15%; 
+    margin-bottom: 5%;
+}
+
+.container-Terms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-color);
+    padding-bottom:12%;
+}
+
+
+
+
+.terms-text{
+    padding-bottom: 5%;
+    color: var(--white-color);
+}
+
+
+.terms-button {
+    background-color: #FFFFFF;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    padding: 13px 23px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+    
+}
+
+
+
+
+
+/*Tablet o escritorio pequeño */
+@media (min-width: 900px) and (max-width: 1198px) {
+    .Terms-heading {
+        font-size: 50px;
+    }
+
+    .Terms-secondary{
+        font-size: 15px;
+    }
+
+}
+
+/*Tablet o escritorio pequeño otro */
+@media (min-width: 576px) and (max-width: 900px) {
+    .Terms-heading {
+        font-size: 180%;
+    }
+
+    .Terms-secondary{
+        font-size: 15px;
+    }
+
+
+    .content-card{
+        background-color: var(--primary-color);
+        height: 330px;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+    .container-child-Terms {
+        padding-left: var(--margin-medium);
+        padding-right: var(--margin-medium);
+    }
+
+    .Terms-heading {
+        font-size: 25px;
+        text-align: center;
+        margin-top: 10%;
+        margin-bottom: 5%;
+    }
+
+    .Terms-secondary {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 10%;
+        margin-bottom: 5%;
+    }
+
+    .Terms-card {
+        padding-bottom: 5%;
+        height: auto; /* Para que la altura se ajuste automáticamente al contenido */
+        width: 90%; /* Ajustar el ancho según sea necesario */
+        margin: 0 auto; /* Centrar el elemento en la pantalla */
+    }
+
+    .terms-text {
+        padding-bottom: 5%;
+        text-align: center;
+    }
+}

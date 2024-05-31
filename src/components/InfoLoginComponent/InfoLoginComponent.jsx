@@ -42,7 +42,7 @@ function InfoLoginComponent() {
             <Grid item xs={12} textAlign={'center'}>
                 <h2>Elige la opción que más se adapte a ti</h2>
             </Grid>
-            <Grid item xs={12} md={6}>         
+            <Grid item xs={12 }  md={6} >         
                 <CardInfoComponent userObject={itemsDriver} handleNavidate={handleNavidateDriver}/>
             </Grid>
             <Grid item xs={12} md={6} >

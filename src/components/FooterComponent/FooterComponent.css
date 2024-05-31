@@ -1,14 +1,35 @@
-@import url('./../../App.css');
-
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    background-color: black;
+    background-color: #161624;
     color: white;
 }
 
+
 .footer-content {
-    /* padding: 20px; */
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.logo-footer {
+    height: 60px; /* Ajusta el alto según sea necesario */
+    margin-top: 0;
+}
+
+.image-footer {
+    width: 15%;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1;
+}
+
+.legalcy {
+    justify-self: start;
+}
+
+.ubication {
+    justify-self: end;
 }
