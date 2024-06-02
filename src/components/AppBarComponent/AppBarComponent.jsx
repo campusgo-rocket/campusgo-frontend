@@ -10,12 +10,18 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import './AppBarComponent.css';
+import { useUser } from '../../contexts/userContext';
+import { useNavigate } from 'react-router-dom';
 
 import logo from './../../assets/images/logo-horizontal.png';
 
 const pages = ['Pasajero', 'Conductor', 'Sobre nosotros', 'Términos y condiciones'];
 
 function AppBarComponent() {
+
+  const { setUserType } = useUser();
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -24,6 +30,20 @@ function AppBarComponent() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleButtonPage = (page) => {
+    if (page === 'Pasajero') {
+      setUserType('passenger');
+      navigate(`/signup/passenger`);
+    } else if (page === 'Conductor') {
+      setUserType('driver');
+      navigate(`/signup/driver`);
+    } else if (page === 'Sobre nosotros') {
+      console.log('Sobre nosotros');
+    } else {
+      console.log('Términos y condiciones');
+    }
   };
 
   return (
@@ -79,7 +99,7 @@ function AppBarComponent() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleButtonPage(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -107,7 +127,7 @@ function AppBarComponent() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleButtonPage(page)}
                 className='poppins-regular'
                 sx={{ mx: 3, my: 4, color: 'white', display: 'block', textTransform: 'none', fontFamily: 'Poppins, sans-serif', fontSize: '18px' }}
               >
