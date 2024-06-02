@@ -53,7 +53,6 @@ function EditProfile() {
                     firstName: userData.data.first_name,
                     lastName: userData.data.last_name,
                     email: userData.data.email,
-                    //password: userData.data.password,
                     documentNumber: userData.data.document_number,
                     documentType: userData.data.document_type,
                     address: userData.data.address,
@@ -82,7 +81,6 @@ function EditProfile() {
             first_name: formValues.firstName,
             last_name: formValues.lastName,
             email: formValues.email,
-            //password: formValues.password,
             document_number: formValues.documentNumber,
             document_type: formValues.documentType,
             address: formValues.address,
@@ -155,16 +153,6 @@ function EditProfile() {
                                         onChange={handleChange}
                                         value={formValues.phoneNumber}
                                         placeholder={formValues.phoneNumber}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
-                                    <input
-                                        className="input-form"
-                                        name="password"
-                                        onChange={handleChange}
-                                        value={formValues.password}
-                                        placeholder={formValues.password}
-                                        type="password"
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
