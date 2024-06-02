@@ -53,14 +53,13 @@ function EditProfile() {
                     firstName: userData.data.first_name,
                     lastName: userData.data.last_name,
                     email: userData.data.email,
-                    password: userData.data.password,
+                    //password: userData.data.password,
                     documentNumber: userData.data.document_number,
                     documentType: userData.data.document_type,
                     address: userData.data.address,
                     phoneNumber: userData.data.phone_number,
                     url_profile_photo: userData.data.url_profile_photo,
                 });
-                return userData.data;
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
@@ -77,7 +76,6 @@ function EditProfile() {
     };
 
     const saveUser = async (e) => {
-        const userData = await fetchUserData();
         e.preventDefault();
         setIsLoading(true);
         const user = {
@@ -89,7 +87,7 @@ function EditProfile() {
             document_type: formValues.documentType,
             address: formValues.address,
             phone_number: formValues.phoneNumber,
-            url_profile_photo: userData.url_profile_photo,
+            url_profile_photo: formValues.url_profile_photo,
         };
 
         try {
