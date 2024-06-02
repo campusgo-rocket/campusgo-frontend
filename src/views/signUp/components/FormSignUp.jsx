@@ -26,6 +26,7 @@ function FormSignUp() {
     const [phoneNumber, setPhoneNumber] = useState(0);
     const [typeUser, setTypeUser] = useState('');
     const [typeUserSpanish, setTypeUserSpanish] = useState('');
+    const [savedUid, setSavedUid] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -93,6 +94,7 @@ function FormSignUp() {
             .then((res) => {
                 setUid(res.uid);
                 localStorage.setItem('uid', res.uid);
+                setSavedUid(res.uid);
                 if (typeUser === 'driver') {
                     postDriver({ uid: res.uid })
                     .then(() => {
@@ -126,7 +128,7 @@ function FormSignUp() {
     }
 
     const handleCreatedUser = () => {
-        navigate('/passenger/profile');
+        navigate(`/user/profile/${savedUid}`);
     }
 
     const handleCreatedDriver = () => {
