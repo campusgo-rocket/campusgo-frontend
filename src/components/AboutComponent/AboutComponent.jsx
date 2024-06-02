@@ -9,11 +9,11 @@ import iconoAbout from './../../assets/images/icono-sobrenosotros.png'
 
 function AboutComponent() {
     return (  
-        <Container maxWidth="xl" className='container poppins-light' sx={{height: '82vh'}}>
-            <Grid container spacing={1} className='container-child'>
-                <Grid item xs={12} sm={8} md={8}>
-                    <h1>Sobre nosotros</h1>
-                    <p>CampusGo es una plataforma creada por y para la comunidad estudiantil de la Universidad del Valle.</p>
+        <Container maxWidth="xl" className='container-about poppins-light' sx={{height: '88vh'}}>
+            <Grid container spacing={1} className='container-child-about'>
+                <Grid item xs={12} sm={8} md={8} className="text-container-about">
+                    <h1 className='textAbout'>Sobre nosotros</h1>
+                    <p className='subtextAbout'>CampusGo es una plataforma creada por y para la comunidad estudiantil de la Universidad del Valle.</p>
                     <img src={iconoAbout} className='iconoAbout' />
                 </Grid>
                 <Grid item xs={3} sm={4} md={4} display={{ xs: 'none', sm: 'none', md: 'block' }} hidden={{ xs: true, sm: true,  md: false }}>

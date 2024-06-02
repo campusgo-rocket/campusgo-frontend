@@ -1,6 +1,6 @@
 @import url('./../../App.css');
 
-h1 {
+.cupos-info-text1 {
     font-weight: 900;
     align-items: center;
 }
@@ -13,14 +13,90 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh; /* Establece la mitad del alto de la pantalla */
+    padding-top: 5%;
 }
 
 
 .container-info {
     background-color: var(--primary-color);
     background-image: url('src/assets/images/backgroundAbout.png');
-    background-size: cover; /* Ajusta el tamaño de la imagen para que cubra todo el contenedor */
-    background-position: center; /* Centra la imagen de fondo */
-    color: var(--primary-color); /* Asegúrate de que el texto sea visible sobre la imagen de fondo */
+    background-size: cover;
+    background-position: center; 
+    color: var(--primary-color);
+}
+
+
+
+/*Escritorio*/
+@media (min-width: 1199.98px) {
+    
+    .cupos-info-text {
+        font-size: 20px;
+        text-align: center;
+        padding: 60px;
+    }
+
+    .cupos-info-text1 {
+        font-weight: 900;
+        font-size: 150px;
+        align-items: center;
+    }
+
+
+
+}
+
+
+/*Tablet o escritorio pequeño */
+@media (min-width: 576px) and (max-width: 1198px) {
+    
+    .cupos-info-text1 {
+        font-weight: 900;
+        font-size: 80px;
+        align-items: center;
+    }
+
+    .cupos-info-text {
+        font-size: 18px;
+        text-align: center;
+        padding: 60px;
+    }
+}
+
+
+
+
+/*Tablet o escritorio pequeño */
+@media (min-width: 576px) and (max-width: 1198px) {
+     
+    .cupos-info-text1 {
+        font-weight: 900;
+        font-size: 70px;
+        align-items: center;
+    }
+
+    .cupos-info-text {
+        font-size: 17px;
+        text-align: center;
+        padding: 30px;
+    }
+
+}
+
+
+/*Movil*/
+@media (max-width: 575.98px) {
+
+    .cupos-info-text1 {
+        padding-top: 16%;
+        font-weight: 900;
+        font-size: 50px;
+        align-items: center;
+    }
+
+    .cupos-info-text {
+        font-size: 17px;
+        text-align: center;
+    }
+
 }

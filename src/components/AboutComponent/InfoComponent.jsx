@@ -6,10 +6,10 @@ import Grid from '@mui/material/Grid'
 
 function InfoComponent() {
     return (  
-        <Container maxWidth="xl" className='container-info poppins-light' sx={{height: '82vh'}}>
+        <Container maxWidth="xl" className='container-info poppins-light' sx={{height: '110vh'}}>
             <Grid container spacing={1} className='container-child-info'>
-                    <h1>¡CUPOS!</h1>
-                    <p>El sistema de cupos ha sido durante mucho tiempo la forma de conexión entre estudiantes con vehículos y aquellos que necesitan un medio de transporte. CampusGo toma esa idea y la lleva al siguiente nivel, proporcionando una plataforma centralizada y fácil de usar que facilita la conexión entre conductores y pasajeros.</p>
+                    <h1 className='cupos-info-text1'>¡CUPOS!</h1>
+                    <p className='cupos-info-text'>El sistema de cupos ha sido durante mucho tiempo la forma de conexión entre estudiantes con vehículos y aquellos que necesitan un medio de transporte. CampusGo toma esa idea y la lleva al siguiente nivel, proporcionando una plataforma centralizada y fácil de usar que facilita la conexión entre conductores y pasajeros.</p>
             </Grid>
         </Container>     
     )

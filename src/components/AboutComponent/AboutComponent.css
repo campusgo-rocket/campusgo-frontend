@@ -1,80 +1,80 @@
 @import url('./../../App.css');
 
-h1 {
-    font-weight: 600;
+.textAbout {
+    font-weight:900;
+    font-size: 70px;
 }
 
-.start-now {
-    margin-top: var(--margin-extra-large);
-}
 
-.container {
+
+.container-about {
     background-color: var(--primary-color);
     color: var(--white-color);
     cursor: default;
 }
 
-.icon {
-    cursor: pointer;
-}
-
-.icon:hover {
-    transform: scale(1.1);
-}
-
 .imageAbout {
-    width:auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20%;
     height: auto;
-    max-width: 78.4%;
 }
 
 .iconoAbout {
-    width:auto;
-    height: auto;
-    max-width: 45%;
+    max-width: 400px;
 }
 
 /*Escritorio*/
 @media (min-width: 1199.98px) {
-    h1 {
-        font-size: var(--font-size-extra-large);
+    .textAbout {
+        font-weight:900;
+        font-size: 68px;
     }
-    h2 {
-        font-size: var(--font-size-medium);
-    }
-    .container-child {
-        padding-left: var(--margin-extra-large);
-        padding-right: var(--margin-extra-large);
-        padding-bottom: 0%;
-    }
+
+
+.container-child-about {
+    padding-left: 8%;
+    padding-right: 20%;
+}
 }
 
 /*Tablet o escritorio pequeño */
 @media (min-width: 576px) and (max-width: 1198px) {
-    h1 {
-        font-size: var(--font-size-medium);
+    .textAbout {
+        font-weight:900;
+        font-size: 50px;
     }
-    h2 {
-        font-size: var(--font-size-small);
-    }
-    .container-child {
-        padding-left: var(--margin-extra-large);
-        padding-right: var(--margin-extra-large);
-        padding-bottom: 0px;
-    }
+
+.container-child-about {
+    padding-left: 8%;
+}
+
 }
 
 /*Movil*/
 @media (max-width: 575.98px) {
-    h1 {
-        font-size: var(--font-size-medium);
+
+    .textAbout {
+        font-weight:900;
+        font-size: 40px;
     }
-    h2 {
-        font-size: var(--font-size-small);
+
+    .text-container-about {
+       text-align: center;
+        padding-right: 20px;
+        justify-self: center;
     }
-    .container-child {
-        padding-left: var(--margin-large);
-        padding-right: var(--margin-large);
-        padding-bottom: var(--margin-large);
+    
+
+    .container-child-about {
+        align-content: center;
     }
+
+
+.iconoAbout {
+    justify-content: center;
+    max-width: 350px;
+}
+
 }

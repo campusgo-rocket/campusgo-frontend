@@ -5,7 +5,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
 import { postUser, postDriver, postPassenger } from './../../../services/authService';
-import ImagePortrait from '../../../assets/images/fondo_registro.png';
+import ImagePortrait from '../../../assets/images/fondo_registro-pasajero.png';
+import ImagePortraitDriver from '../../../assets/images/fondo_registro-conductor.png';
 import './FormSignUp.css';
 
 import { useUser } from "../../../contexts/userContext";
@@ -30,6 +31,9 @@ function FormSignUp() {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+
+    const backgroundImage = typeUser === 'driver' ? ImagePortraitDriver : ImagePortrait;
+
 
     useEffect(() => {
         if (userType === 'passenger') {
@@ -119,7 +123,7 @@ function FormSignUp() {
                 setIsLoading(false);
                 setIsError(true);
             })
-    }
+    } 
 
     const handleClose = () => {
         setIsError(false);
@@ -140,9 +144,9 @@ function FormSignUp() {
     return (
         <Container maxWidth="xl">
             {!isLoading &&
-                <Grid container spacing={1}>
-                    <Grid item xs={12} sm={8} md={8} className="container-child-singup" padding={'none'}>
-                        <FormControl className="card-form">
+                <Grid container spacing={1} className="container-singup" >
+                    <Grid item xs={12} sm={8} md={8}  className="container-child-singup" padding={'none'}>
+                        <FormControl className="card-form-sign">
                             <Grid container className='poppins-light'>
                                 <Grid item xs={12} sm={12} md={12}>
                                     <h2 className="title-form">Registro de {typeUserSpanish}</h2>
@@ -155,7 +159,7 @@ function FormSignUp() {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <select
-                                        className="input-form"
+                                        className="input-form select-form"
                                         style={{ height: 50, width: 298 }}
                                         onChange={handleChangeDocumentType}
                                         value={documentType}
@@ -166,7 +170,7 @@ function FormSignUp() {
                                     </select>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeIdUser} placeholder="Número de documento"></input>
+                                    <input className="input-form" onChange={handleChangeIdUser}  placeholder="Número de documento"></input>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input className="input-form" onChange={handleChangeEmail} placeholder="Correo institucional"></input>
@@ -191,11 +195,12 @@ function FormSignUp() {
                         </FormControl>
                     </Grid>
                     <Grid item md={4} display={{ xs: 'none', sm: 'none', md: 'flex' }} sx={{ justifyContent: 'flex-end' }}>
-                        <img className="img-register" src={ImagePortrait}></img>
+                        <img className={`img-register ${typeUser === 'driver' ? 'img-register-driver' : 'img-register-passenger'}`} src={backgroundImage} alt="background"></img>
                     </Grid>
-                </Grid>
 
+                </Grid>
             }
+
             {isLoading &&
                 <LoadingComponent color="inherit" />
             }

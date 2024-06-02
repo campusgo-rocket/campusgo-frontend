@@ -12,10 +12,10 @@ function FooterComponent() {
                     <img src={logo} alt="Logo" className="image-footer" />
                 </h1>
                 <div className="footer-grid">
-                    <div className="legalcy" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <div className="legalcy" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '90%'}}>
                         <p>© 2024 campusGo, Inc</p>
                     </div>
-                    <div className="ubication" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    <div className="ubication" style={{ fontFamily: 'Poppins, sans-serif', fontSize: '90%' }}>
                         <p>Cali - Colombia</p>
                     </div>
                 </div>
