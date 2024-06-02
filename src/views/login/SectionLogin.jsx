@@ -1,12 +1,8 @@
-import { Container } from "@mui/material";
 import React from "react";
+import Login from "./components/Login";
 
 function SectionLogin() {
-    return (
-        <Container>
-            <h1 className="poppins-light">HOLA, ME ENCUENTRO EN CONSTRUCCIÓN 👷‍♂️</h1>
-        </Container>
-    )
+  return <Login />;
 }
 
 export default SectionLogin;
