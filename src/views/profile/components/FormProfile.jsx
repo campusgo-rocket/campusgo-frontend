@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, Container, DialogActions, DialogContent, DialogContentText, FormControl, Grid, TextField, Select, MenuItem, InputLabel } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom"; // Importa useParams
+import { Button, Container, DialogActions, DialogContent, DialogContentText, FormControl, Grid, TextField } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
-import { postUser, postDriver, postPassenger } from './../../../services/authService';
+import { postUser, postDriver, postPassenger, getUser, putUser } from './../../../services/authService';
 import ImagePortrait from '../../../assets/images/fondo_registro.png';
 import './FormSignUp.css';
 
@@ -12,20 +12,19 @@ import { useUser } from "../../../contexts/userContext";
 
 function EditProfile() {
     const navigate = useNavigate();
-    const { setUid, userType } = useUser();
+    const { userType } = useUser();
     const [typeUser, setTypeUser] = useState('');
+    const [typeUserSpanish, setTypeUserSpanish] = useState('');
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [password, setPassword] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState(0);
+    // Utiliza useParams para obtener el userId de la URL
+    const { userId } = useParams();
 
     const [formValues, setFormValues] = useState({
         firstName: '',
         lastName: '',
         email: '',
         password: '',
-        idUser: '',
+        documentNumber: '',
         documentType: 'CC',
         address: '',
         phoneNumber: '',
@@ -45,65 +44,75 @@ function EditProfile() {
             setTypeUser('driver');
             setTypeUserSpanish('Conductor');
         }
-    }, [userType]);
 
-    const handleChangeFirstName = (e) => {
-        setFirstName(e.target.value);
-    }
+        // Fetch user data
+        const fetchUserData = async () => {
+            try {
+                const userData = await getUser(userId); // Usar userId obtenido de la URL
+                setFormValues({
+                    firstName: userData.data.first_name,
+                    lastName: userData.data.last_name,
+                    email: userData.data.email,
+                    password: userData.data.password,
+                    documentNumber: userData.data.document_number,
+                    documentType: userData.data.document_type,
+                    address: userData.data.address,
+                    phoneNumber: userData.data.phone_number,
+                    url_profile_photo: userData.data.url_profile_photo,
+                });
+                return userData.data;
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
 
-    const handleChangeLastName = (e) => {
-        setLastName(e.target.value);
-    }
+        fetchUserData();
+    }, [userType, userId]);
 
-    const handleChangePassword = (e) => {
-        setPassword(e.target.value);
-    }
-    
-    const handleChangePhoneNumber = (e) => {
-        setPhoneNumber(e.target.value);
-    }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues((prevValues) => ({
+            ...prevValues, [name]: value
+        }));
+    };
 
-    const saveUser = (e) => {
+    const saveUser = async (e) => {
+        const userData = await fetchUserData();
         e.preventDefault();
         setIsLoading(true);
-        let user = {
-            first_name: firstName,
-            last_name: lastName,
-            password: password,
-            phone_number: phoneNumber,
-            url_profile_photo: 'none'
-        }
-        postUser(user)
-            .then((res) => {
-                setUid(res.uid);
-                localStorage.setItem('uid', res.uid);
+        const user = {
+            first_name: formValues.firstName,
+            last_name: formValues.lastName,
+            email: formValues.email,
+            //password: formValues.password,
+            document_number: formValues.documentNumber,
+            document_type: formValues.documentType,
+            address: formValues.address,
+            phone_number: formValues.phoneNumber,
+            url_profile_photo: userData.url_profile_photo,
+        };
+
+        try {
+            if (userId) {
+                await putUser(userId, user);
+                setIsSuccess(true);
+            } else {
+                const res = await postUser(user);
+                setuserId(res.userId);
+                localStorage.setItem('userId', res.userId);
                 if (typeUser === 'driver') {
-                    postDriver({ uid: res.uid })
-                    .then(() => {
-                        setIsLoading(false);
-                        setIsSuccess(true);
-                    })
-                    .catch(() => {
-                        setIsLoading(false);
-                        setIsError(true);
-                    })
+                    await postDriver({ userId: res.userId });
                 } else if (typeUser === 'passenger') {
-                    postPassenger({ uid: res.uid })
-                    .then(() => {
-                        setIsLoading(false);
-                        setIsSuccess(true);
-                    })
-                    .catch(() => {
-                        setIsLoading(false);
-                        setIsError(true);
-                    })
+                    await postPassenger({ userId: res.userId });
                 }
-            })
-            .catch(() => {
-                setIsLoading(false);
-                setIsError(true);
-            })
-    }
+                setIsSuccess(true);
+            }
+        } catch (error) {
+            setIsError(true);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleClose = () => {
         setIsError(false);
@@ -124,19 +133,87 @@ function EditProfile() {
                                     <h2 className="title-form">Editar Perfil</h2>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeFirstName} placeholder="Nombres"></input>
+                                    <input 
+                                        className="input-form" 
+                                        name="firstName" 
+                                        onChange={handleChange} 
+                                        value={formValues.firstName} 
+                                        placeholder={formValues.firstName}
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangeLastName} placeholder="Apellidos"></input>
+                                    <input 
+                                        className="input-form" 
+                                        name="lastName" 
+                                        onChange={handleChange} 
+                                        value={formValues.lastName} 
+                                        placeholder={formValues.lastName} 
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangePassword} placeholder="Contraseña" type="password"></input>
+                                    <input 
+                                        className="input-form" 
+                                        name="phoneNumber" 
+                                        onChange={handleChange} 
+                                        value={formValues.phoneNumber} 
+                                        placeholder={formValues.phoneNumber} 
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input className="input-form" onChange={handleChangePhoneNumber} placeholder="Número de celular"></input>
+                                    <input 
+                                        className="input-form" 
+                                        name="password" 
+                                        onChange={handleChange} 
+                                        value={formValues.password} 
+                                        placeholder={formValues.password}
+                                        type="password"
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <input 
+                                        className="input-form" 
+                                        name="email" 
+                                        value={formValues.email} 
+                                        placeholder={formValues.email}
+                                        type="email" 
+                                        readOnly
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <input 
+                                        className="input-form" 
+                                        name="documentNumber" 
+                                        value={formValues.documentNumber} 
+                                        placeholder={formValues.documentNumber} 
+                                        readOnly
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <input 
+                                        className="input-form" 
+                                        name="documentType" 
+                                        value={formValues.documentType} 
+                                        placeholder={formValues.documentType} 
+                                        readOnly
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <input 
+                                        className="input-form" 
+                                        name="address" 
+                                        value={formValues.address} 
+                                        placeholder={formValues.address} 
+                                        readOnly
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
-                                    <button className="btn btn-primary" type="submit" onClick={(e) => saveUser(e)}>{ typeUser === 'passenger' ? 'Registrarse' : 'Guardar Cambios'}</button>
+                                    <button 
+                                        className="btn btn-primary" 
+                                        type="submit" 
+                                        onClick={(e) => saveUser(e)}
+                                    >
+                                        {typeUser === 'passenger' ? 'Registrarse' : 'Guardar Cambios'}
+                                    </button>
                                 </Grid>
                             </Grid>
                         </FormControl>

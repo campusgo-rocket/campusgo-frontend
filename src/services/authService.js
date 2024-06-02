@@ -43,3 +43,31 @@ export const postPassenger = async (uid) => {
         throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
     }
 };
+
+export const getUser = async (uid) => {
+    try {
+        const response = await axios.get(`${urlApi}/auth/readUser/${uid}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
+    }
+};
+
+export const putUser = async (id, user) => {
+    try {
+        const response = await axios.put(`${urlApi}/auth/updateUser/${id}`, user, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
+    }
+};
