@@ -38,6 +38,21 @@ button, a {
     object-fit: cover;
 }
 
+.input-form {
+    /* Other styling for input-form */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.readonly-input {
+    color: #999; /* Lighter text color for read-only fields */
+    background-color: #f5f5f5; /* Optional: slightly different background color */
+}
+
+
 @media (min-width: 968px) {
     .card-form {
         margin-top: 50px !important;

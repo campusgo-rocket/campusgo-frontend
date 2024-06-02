@@ -131,83 +131,83 @@ function EditProfile() {
                                     <h2 className="title-form">Editar Perfil</h2>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="firstName" 
-                                        onChange={handleChange} 
-                                        value={formValues.firstName} 
+                                    <input
+                                        className="input-form"
+                                        name="firstName"
+                                        onChange={handleChange}
+                                        value={formValues.firstName}
                                         placeholder={formValues.firstName}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="lastName" 
-                                        onChange={handleChange} 
-                                        value={formValues.lastName} 
-                                        placeholder={formValues.lastName} 
+                                    <input
+                                        className="input-form"
+                                        name="lastName"
+                                        onChange={handleChange}
+                                        value={formValues.lastName}
+                                        placeholder={formValues.lastName}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="phoneNumber" 
-                                        onChange={handleChange} 
-                                        value={formValues.phoneNumber} 
-                                        placeholder={formValues.phoneNumber} 
+                                    <input
+                                        className="input-form"
+                                        name="phoneNumber"
+                                        onChange={handleChange}
+                                        value={formValues.phoneNumber}
+                                        placeholder={formValues.phoneNumber}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="password" 
-                                        onChange={handleChange} 
-                                        value={formValues.password} 
+                                    <input
+                                        className="input-form"
+                                        name="password"
+                                        onChange={handleChange}
+                                        value={formValues.password}
                                         placeholder={formValues.password}
                                         type="password"
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="email" 
-                                        value={formValues.email} 
+                                    <input
+                                        className="input-form readonly-input"
+                                        name="email"
+                                        value={formValues.email}
                                         placeholder={formValues.email}
-                                        type="email" 
+                                        type="email"
                                         readOnly
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="documentNumber" 
-                                        value={formValues.documentNumber} 
-                                        placeholder={formValues.documentNumber} 
+                                    <input
+                                        className="input-form readonly-input"
+                                        name="documentNumber"
+                                        value={formValues.documentNumber}
+                                        placeholder={formValues.documentNumber}
                                         readOnly
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="documentType" 
-                                        value={formValues.documentType} 
-                                        placeholder={formValues.documentType} 
+                                    <input
+                                        className="input-form readonly-input"
+                                        name="documentType"
+                                        value={formValues.documentType}
+                                        placeholder={formValues.documentType}
                                         readOnly
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
-                                    <input 
-                                        className="input-form" 
-                                        name="address" 
-                                        value={formValues.address} 
-                                        placeholder={formValues.address} 
+                                    <input
+                                        className="input-form readonly-input"
+                                        name="address"
+                                        value={formValues.address}
+                                        placeholder={formValues.address}
                                         readOnly
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
-                                    <button 
-                                        className="btn btn-primary" 
-                                        type="submit" 
+                                    <button
+                                        className="btn btn-primary"
+                                        type="submit"
                                         onClick={(e) => saveUser(e)}
                                     >
                                         {typeUser === 'passenger' ? 'Registrarse' : 'Guardar Cambios'}
