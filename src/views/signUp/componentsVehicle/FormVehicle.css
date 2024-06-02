@@ -4,7 +4,8 @@ body {
     background-color: #F1F1F1;
 }
 
-button, a {
+button,
+a {
     cursor: pointer;
 }
 
@@ -26,7 +27,8 @@ button, a {
     height: 600px;
 }
 
-#alert-dialog-title, #alert-dialog-description {
+#alert-dialog-title,
+#alert-dialog-description {
     font-family: "Poppins", sans-serif;
 }
 
@@ -36,7 +38,18 @@ button, a {
     width: 900px;
     height: 100%;
     object-fit: cover;
-    pointer-events: none;
+}
+
+.checkbox-verification {
+    top: 806px;
+    left: 173px;
+    width: 30px;
+    height: 30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 3px 3px 10px #00000029;
+    border: 2px solid #E20000;
+    border-radius: 10px;
+    opacity: 1;
 }
 
 @media (min-width: 968px) {

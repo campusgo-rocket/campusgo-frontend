@@ -3,7 +3,7 @@ import AppBarComponent from './components/AppBarComponent/AppBarComponent'
 import SectionHome from './views/landingPage/SectionHome'
 import SectionRegisterLogin from './views/landingPage/SectionRegisterLogin'
 import SectionSignUp from './views/signUp/SectionSignUp'
-import { ProfileComponent } from './views/profile/components/Profile'
+import { ProfileComponent } from './views/profile/Profile'
 import SectionLogin from './views/login/SectionLogin'
 import { FooterComponent } from './components/FooterComponent/FooterComponent'
 
@@ -26,9 +26,9 @@ function App() {
             <Route path="login" element={<SectionLogin />} />
             <Route path="signup/driver" element={<SectionSignUp />} />
             <Route path="signup/passenger" element={<SectionSignUp />} />
-            <Route path="driver/profile" element={<ProfileComponent />} />
+            <Route path="/user/profile/:userId" element={<ProfileComponent />} />
             <Route path="driver/vehicle" element={<SectionVehicle />} />
-            <Route path="passenger/profile" element={<ProfileComponent />} />
+            
           </Routes>
           <FooterComponent /> 
         </BrowserRouter>
