@@ -27,7 +27,7 @@ function App() {
             <Route path="signup/driver" element={<SectionSignUp />} />
             <Route path="signup/passenger" element={<SectionSignUp />} />
             <Route path="/user/profile/:userId" element={<ProfileComponent />} />
-            <Route path="driver/vehicle" element={<SectionVehicle />} />
+            <Route path="driver/vehicle/:userId" element={<SectionVehicle />} />
             
           </Routes>
           <FooterComponent /> 
