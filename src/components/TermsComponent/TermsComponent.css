@@ -1,0 +1,95 @@
+@import url('./../../App.css');
+
+.container-child-TYC {
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-bottom: 0%;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    align-items: center;
+    padding-top: 2%;
+}
+
+.TYC-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%; /* Ajusta el tamaño según tus necesidades */
+    max-width: 100px; /* Tamaño máximo para la imagen */
+    height: auto;
+    margin-top: 4%;
+}
+
+.TYC-text {
+    font-weight: 800;
+    font-size: 25px;
+    text-align: center;
+}
+
+.container-TYC {
+    background-image: url('src/assets/images/backgroundAbout.png');
+    background-size: cover;
+    background-position: center; 
+    color: var(--primary-color);
+}
+
+/*Escritorio*/
+@media (min-width: 1199.98px) {
+    .TYC-info-text1 {
+        font-weight: 300;
+        font-size: 20px;
+        align-items: center;
+        text-align: justify;
+        margin-bottom: 0px; /* Ajusta el valor según tus necesidades */
+    }
+    
+}
+
+/*Tablet o escritorio pequeño */
+@media (min-width: 576px) and (max-width: 1198px) {
+    .TYC-info-text1 {
+        font-weight: 300;
+        font-size: 16px;
+        
+    }
+
+    .TYC-text {
+        font-weight: 800;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .TYC-logo {
+        margin-top: 10%;
+    }
+    .container-child-TYC {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+/*Movil*/
+@media (max-width: 575.98px) {
+    .TYC-info-text1 {
+        font-weight: 300;
+        font-size: 15px;
+        text-align: justify;
+    }
+
+    .TYC-text {
+        font-weight: 800;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .TYC-logo {
+        margin-top: 50%;
+    }
+
+    .container-child-TYC {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+}

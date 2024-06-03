@@ -1,5 +1,6 @@
 @import url('./../../App.css');
 
-.logo-horizontal {
-    width: 250px;
+.logo-bar {
+    width: 200px;
+    max-width: 90%;
 }
