@@ -70,49 +70,53 @@ function Login() {
 
   return (
     <div className="divImageContainer">
-      <FormControl>
-        <div className="card-form">
-          <Grid container justify="center" className="poppins-light">
-            <Grid item xs={12} sm={12} md={12}>
-              <h2 className="title-form">Inicio de sesión</h2>
+      <div className="divLogin">
+        <FormControl>
+          <div className="card-form-login">
+            <Grid container justify="center" className="poppins-light">
+              <Grid item xs={12} sm={12} md={12}>
+                <h2 className="title-form">Inicio de sesión</h2>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12}>
+                <input
+                  className="input-form-md"
+                  onChange={handleChangeEmail}
+                  placeholder="Correo Institucional"
+                ></input>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12}>
+                <input
+                  className="input-form-md"
+                  onChange={handleChangePassword}
+                  placeholder="Contraseña"
+                  type="password"
+                ></input>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12}>
+                <span className="registerColor">
+                  ¿Aún no te registras?{" "}
+                  <a onClick={handleSignup}>
+                    <b>
+                      <i>¡Hazlo ahora!</i>
+                    </b>
+                  </a>
+                </span>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12}>
+                <div className="div-bt">
+                  <button
+                    className="btn btn-primary"
+                    type="submit"
+                    onClick={signIn}
+                  >
+                    {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
+                  </button>
+                </div>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={12} md={12}>
-              <input
-                className="input-form-lg"
-                onChange={handleChangeEmail}
-                placeholder="Correo Institucional"
-              ></input>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12}>
-              <input
-                className="input-form-lg"
-                onChange={handleChangePassword}
-                placeholder="Contraseña"
-                type="password"
-              ></input>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12}>
-              <span>
-                ¿Aún no te registras?{" "}
-                <a onClick={handleSignup}>
-                  <b>¡Hazlo ahora!</b>
-                </a>
-              </span>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12}>
-              <div className="div-bt">
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                  onClick={signIn}
-                >
-                  {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
-                </button>
-              </div>
-            </Grid>
-          </Grid>
-        </div>
-      </FormControl>
+          </div>
+        </FormControl>
+      </div>
       {isLoading && <LoadingComponent color="inherit" />}
       {!isLoading && isError && (
         <Dialog
