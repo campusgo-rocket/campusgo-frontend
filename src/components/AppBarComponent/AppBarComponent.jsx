@@ -47,7 +47,7 @@ function AppBarComponent() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: '#e20001', height: '12vh'}}>
+    <AppBar position="static" sx={{backgroundColor: '#e20001', height: '14vh'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -63,10 +63,11 @@ function AppBarComponent() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
-              paddingLeft: { md: '90px' }
+              paddingLeft: { md: '90px' },
+              lineHeight: '2px'
             }}
           >
-            <img className='logo-horizontal' src={logo} alt="" />
+            <img className='logo-bar' src={logo} alt="" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -121,7 +122,7 @@ function AppBarComponent() {
               textDecoration: 'none',
             }}
           >
-            <img className='logo-horizontal' src={logo} alt="" />
+            <img className='logo-bar' src={logo} alt="" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, paddingLeft: { md: '20px' } }}>
             {pages.map((page) => (
@@ -129,8 +130,8 @@ function AppBarComponent() {
                 key={page}
                 onClick={() => handleButtonPage(page)}
                 className='poppins-regular'
-                sx={{ mx: 3, my: 4, color: 'white', display: 'block', textTransform: 'none', fontFamily: 'Poppins, sans-serif', fontSize: '18px' }}
-              >
+                sx={{ mx: 1, my: 4, color: 'white', display: 'block', textTransform: 'none', fontFamily: 'Poppins, sans-serif', fontSize: '18px', lineHeight: '20px' }}
+                >
                 {page}
               </Button>
             ))}
