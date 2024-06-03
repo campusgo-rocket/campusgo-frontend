@@ -12,16 +12,17 @@ button, a {
     color: var(--primary-color);
 }
 
-.card-form {
+.card-form-login {
     background-color: var(--white-color);
     margin-top: 20px;
     border-radius: 20px;
-    padding: 40px;
-    align-items: start;
-    text-align: start;
-
+    padding-bottom: 15%;
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Esto alinea el texto al centro */
 }
-
 
 .imageDriverRegister {
     width: 47.5%;
@@ -31,6 +32,17 @@ button, a {
 .divImageContainer{
     display: flex;
     padding-left: 5%;
+}
+
+.divLogin{
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.registerColor{
+    color: dimgray
 }
 
 .input-form-email {
@@ -43,10 +55,10 @@ button, a {
     border: 2px solid #dcdcdc;
 }
 
-.input-form-lg {
+.input-form-md {
     font-family: "Poppins", sans-serif;
     height: 40px;
-    width: 80%;
+    width: 70%;
     margin: 3px;
     padding-left: 10px;
     border-radius: 5px;
@@ -73,4 +85,4 @@ button, a {
     height: 1px;
     background-color: #000;
     margin-top: 5px; /* Ajusta el espacio entre el texto y la línea */
-  }
+}
