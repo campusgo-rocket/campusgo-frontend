@@ -112,10 +112,11 @@ function EditProfile() {
 
     const handleClose = () => {
         setIsError(false);
+        setIsSuccess(false);
     }
 
     const handleSuccess = () => {
-        navigate('/profile'); // Redirige a la página de perfil
+        navigate(`/user/profile/${userId}`); // Redirige a la página de perfil
     };
 
     return (
@@ -232,7 +233,7 @@ function EditProfile() {
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleSuccess} color="secondary" autoFocus>
+                        <Button onClick={handleClose} color="secondary" autoFocus>
                             Continuar
                         </Button>
                     </DialogActions>

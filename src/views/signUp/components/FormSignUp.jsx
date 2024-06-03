@@ -132,7 +132,7 @@ function FormSignUp() {
     }
 
     const handleCreatedDriver = () => {
-        navigate('/driver/vehicle');
+        navigate(`/driver/vehicle/${savedUid}`);
     }
 
     const handleLogin = () => {

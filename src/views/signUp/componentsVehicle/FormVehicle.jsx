@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Container, DialogActions, DialogContent, DialogContentText, FormControl, Grid } from "@mui/material"
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -18,14 +18,17 @@ function FormSignUp() {
     const [model, setModel] = useState('');
     const [make, setMake] = useState('');
     const [year, setYear] = useState('');
-    const [idDriver, setIdDriver] = useState("vSlY7KpNsHKuV1qrri70");
+    //const [idDriver, setIdDriver] = useState("vSlY7KpNsHKuV1qrri70");
     const [plateNumber, setPlateNumber] = useState('');
     const [typeVehicle, setVehicleType] = useState('Carro');
     const [color, setColor] = useState('');
-    
+    const [savedUid, setSavedUid] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+
+    // Utiliza useParams para obtener el userId de la URL
+    const { userId } = useParams();
 
     useEffect(() => {
         
@@ -60,7 +63,7 @@ function FormSignUp() {
     }
 
     const handleCreatedVehicle = (e) => {
-        navigate("/driver/profile");
+        navigate(`/user/profile/${userId}`);
     }
 
     const saveVehicle = (e) => {
@@ -72,7 +75,7 @@ function FormSignUp() {
             model: model,
             year: year,
             plate_number: plateNumber,
-            id_driver: idDriver,
+            id_driver: userId,
             type_vehicle: typeVehicle
         }
         postVehicle(vehicle)
