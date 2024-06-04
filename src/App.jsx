@@ -10,6 +10,7 @@ import { FooterComponent } from './components/FooterComponent/FooterComponent'
 
 import { UserProvider } from './contexts/userContext'
 import { SectionVehicle } from './views/signUp/SectionVehicle'
+import Mapa from './views/Mapa/Map'
 
 function App() {
   return (
