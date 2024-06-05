@@ -6,7 +6,7 @@ import TYC from '../../assets/images/TYC.png'
 
 function InfoComponent() {
     return (
-        <Container maxWidth="xl" className='container-TYC poppins-light' sx={{height: '250vh'}}>
+        <Container maxWidth="xl" className='container-TYC poppins-light' sx={{height: '180vh'}}>
             <Grid container spacing={1} className='container-child-TYC'>
                 <Grid item xs={12} className='TYC-container'>
                     <img src={TYC} alt="TYC" className='TYC-logo' />

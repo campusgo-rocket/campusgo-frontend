@@ -158,7 +158,7 @@ function FormSignUp() {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <select
                                         className="input-form"
-                                        style={{ height: 50, width: 298 }}
+                                        style={{ height: 66, width: 308 }}
                                         onChange={handleChangeDocumentType}
                                         value={documentType}
                                         name="document_type" id="document_type"

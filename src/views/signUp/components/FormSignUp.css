@@ -23,7 +23,7 @@ button, a {
     margin-top: 20px;
     border-radius: 20px;
     padding: 20px;
-    height: 600px;
+    min-height: 550px !important;
 }
 
 #alert-dialog-title, #alert-dialog-description {

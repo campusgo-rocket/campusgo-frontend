@@ -42,7 +42,7 @@ function AppBarComponent() {
     } else if (page === 'Sobre nosotros') {
       console.log('Sobre nosotros');
     } else {
-      console.log('Términos y condiciones');
+      navigate(`/terms`);
     }
   };
 
