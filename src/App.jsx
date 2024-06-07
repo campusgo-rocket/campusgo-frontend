@@ -4,6 +4,9 @@ import SectionHome from './views/landingPage/SectionHome'
 import SectionRegisterLogin from './views/landingPage/SectionRegisterLogin'
 import SectionSignUp from './views/signUp/SectionSignUp'
 import SectionTerms from './views/Terms/SectionTerms'
+import SectionAbout from './views/AboutUs/SectionAboutUs'
+import InfoHome from './components/HomeComponent/Info Home/InfoHomeComponent'
+import TermsHome from './components/HomeComponent/Terms Home/HomeTermsComponent'
 import { ProfileComponent } from './views/profile/Profile'
 import SectionLogin from './views/login/SectionLogin'
 import { FooterComponent } from './components/FooterComponent/FooterComponent'
@@ -22,11 +25,14 @@ function App() {
               <>
                 <SectionHome />
                 <SectionRegisterLogin />
+                <InfoHome/>
+                <TermsHome/>
               </>
             }>
             </Route>
+            <Route path="aboutus" element={<SectionAbout />} />
             <Route path="login" element={<SectionLogin />} />
-            <Route path="Terms" element={<SectionTerms />} />
+            <Route path="terms" element={<SectionTerms />} />
             <Route path="signup/driver" element={<SectionSignUp />} />
             <Route path="signup/passenger" element={<SectionSignUp />} />
             <Route path="/user/profile/:userId" element={<ProfileComponent />} />

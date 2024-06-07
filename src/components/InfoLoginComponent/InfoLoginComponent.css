@@ -11,6 +11,8 @@ h1 {
     background-color: var(--white-color);
     color: var(--primary-color);
     cursor: default;
+    padding-top: 1%;
+    padding-bottom: 5%;
 }
 
 .mi-componente {
@@ -28,7 +30,7 @@ h1 {
 }
 
 .mi-componente:hover {
-    height: 520px; /* Expande la altura del componente al hacer hover */  
+    height: 470px; /* Expande la altura del componente al hacer hover */  
 }
 
 .mi-componente .fondo {
@@ -52,6 +54,19 @@ h1 {
 .mi-componente:hover .descripcion {
     height: auto; /* Se expande hacia abajo al colocar el cursor */
 }
+
+
+.boton-imagen { 
+    background: none;
+    border: none; 
+    padding: 0;
+    cursor: pointer; 
+    transition: transform 0.3s; 
+  } 
+  
+  .boton-imagen:hover { 
+    transform: scale(1.1);
+  } 
 
 /*Escritorio*/
 @media (min-width: 1199.98px) {
@@ -101,7 +116,23 @@ h1 {
         padding-bottom: var(--margin-large);
     }
 
+    
     .mi-componente {
-        width: auto;
+        width: calc(100% - 24px);
+        height: auto;
+        overflow: visible;
+    }
+
+    .mi-componente:hover {
+        height: auto; 
+        transition: height 0.3s; /* Suavizar la transición de altura */
+    }
+
+    .container-info-login  {
+        width: 100%;
+        height: auto;
+        padding-left: var(--margin-large);
+        padding-right: var(--margin-large);
+        padding-bottom: var(--margin-large); 
     }
 }
