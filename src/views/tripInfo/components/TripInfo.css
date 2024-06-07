@@ -1,0 +1,151 @@
+@import url('../../../App.css');
+
+.h1-info {
+  margin-top: var(--margin-md-large);
+  font-size: var(--font-size-large);
+  margin-bottom: var(--margin-small);
+  letter-spacing: normal;
+  line-height: 1;
+}
+
+.left-border {
+  border-left: 2px solid var(--primary-color);
+}
+
+
+.start-now {
+    margin-top: var(--margin-extra-large);
+}
+
+.container {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    cursor: default;
+    height: 600px !important;
+}
+
+.title-form {
+  color: var(--primary-color);
+}
+
+.card-form-trip {
+  background-color: var(--white-color);
+  margin-top: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+
+  width: 120%;
+  padding: 2%;
+}
+
+.content-center{
+  align-items: center;
+  text-align: center; 
+}
+
+.dflex{
+  display: flex;
+}
+
+.dblock{
+  display: block;
+}
+
+.mt-05{
+  margin-top: 5%;
+}
+
+.mt-01{
+  margin-top: 1%;
+}
+
+.ml-03{
+  margin-left: 3%;
+}
+
+.ml-05{
+  margin-left: 5%;
+}
+
+.text-small{
+  font-size: small;
+}
+
+.infoImages {
+  width: 3.5%;
+  height: 100%;
+}
+
+.card-info {
+  color: black;
+  padding-top: 2%;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+.imageLanding {
+    height: 650px;
+    padding-right: 0% !important;
+}
+
+/*Escritorio*/
+@media (min-width: 1199.98px) {
+    h1 {
+        font-size: var(--font-size-extra-large);
+    }
+    h2 {
+        font-size: var(--font-size-medium);
+    }
+    .container-child {
+        padding-left: var(--margin-extra-large);
+        padding-right: var(--margin-extra-large);
+        padding-bottom: 0%;
+        padding-right: 0%;
+    }
+}
+
+/*Tablet o escritorio pequeño */
+@media (min-width: 576px) and (max-width: 1198px) {
+    h1 {
+        font-size: var(--font-size-medium);
+    }
+    h2 {
+        font-size: var(--font-size-small);
+    }
+    .container {
+        height: 520px !important;
+    }
+    .container-child {
+        padding-left: var(--margin-extra-large);
+        padding-right: var(--margin-extra-large);
+        padding-bottom: 0px;
+    }
+    .imageLanding {
+        height: 561px;
+    }
+}
+
+/*Movil*/
+@media (max-width: 575.98px) {
+    h1 {
+        font-size: var(--font-size-medium);
+    }
+    h2 {
+        font-size: var(--font-size-small);
+    }
+    .container {
+        height: 520px !important;
+    }
+    .container-child {
+        padding-left: var(--margin-large);
+        padding-right: var(--margin-large);
+        padding-bottom: var(--margin-large);
+    }
+}

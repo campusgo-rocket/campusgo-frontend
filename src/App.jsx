@@ -10,17 +10,19 @@ import TermsHome from './components/HomeComponent/termsHome/HomeTermsComponent'
 import { ProfileComponent } from './views/profile/Profile'
 import SectionLogin from './views/login/SectionLogin'
 import { FooterComponent } from './components/FooterComponent/FooterComponent'
-
 import { UserProvider } from './contexts/userContext'
 import { SectionVehicle } from './views/signUp/SectionVehicle'
+import { SectionTripInfo } from "./views/tripInfo/SectionTripInfo";
 
 function App() {
   return (
-      <UserProvider>
-        <BrowserRouter>
-          <AppBarComponent/>
-          <Routes>
-            <Route path="/" element={
+    <UserProvider>
+      <BrowserRouter>
+        <AppBarComponent />
+        <Routes>
+          <Route
+            path="/"
+            element={
               <>
                 <SectionHome />
                 <SectionRegisterLogin />
@@ -36,6 +38,7 @@ function App() {
             <Route path="signup/passenger" element={<SectionSignUp />} />
             <Route path="user/profile/:userId" element={<ProfileComponent />} />
             <Route path="driver/vehicle/:userId" element={<SectionVehicle />} />
+            <Route path="user/trip/info" element={<SectionTripInfo />} />
           </Routes>
           <FooterComponent /> 
         </BrowserRouter>
@@ -43,4 +46,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
