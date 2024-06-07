@@ -40,9 +40,11 @@ function AppBarComponent() {
       setUserType('driver');
       navigate(`/signup/driver`);
     } else if (page === 'Sobre nosotros') {
-      console.log('Sobre nosotros');
-    } else {
+      navigate(`/aboutus`);
+    } else if (page === 'Términos y condiciones') {
       navigate(`/terms`);
+    } else {
+      console.log('Sobre nosotros');
     }
   };
 
