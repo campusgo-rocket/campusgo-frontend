@@ -1,0 +1,69 @@
+.container-child-info {
+    padding-left: var(--margin-extra-large);
+    padding-right: var(--margin-extra-large);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-heading {
+    font-weight: 200%;
+    font-size: 200%;
+    text-align: center;
+    margin-top: 5%; 
+    margin-bottom: 5%;
+}
+
+.container-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    padding-top: 1%;
+    padding-bottom:12%;
+}
+
+
+.info-card {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    height: 250px;
+}
+
+
+
+
+.info-icon {
+    width: 60%;
+    height: 120px;
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto; 
+}
+
+
+@media (max-width: 575.98px) {
+    .container-child-info {
+        padding-left: var(--margin-medium);
+        padding-right: var(--margin-medium);
+    }
+
+    .info-heading {
+        font-size: 25px;
+        margin-top: 10%; 
+        margin-bottom: 5%;
+    }
+
+    .info-card {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: auto; /* Para que la altura se ajuste automáticamente al contenido */
+        width: 90%; /* Ajustar el ancho según sea necesario */
+        margin: auto; /* Centrar el elemento en la pantalla */
+    }
+
+}

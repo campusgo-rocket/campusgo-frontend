@@ -19,6 +19,7 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [uid, setUid] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -37,7 +38,7 @@ function Login() {
   };
 
   const handleCreatedUser = () => {
-    navigate("/profile");
+    navigate(`/user/profile/${uid}`);
   };
 
   const handleClose = () => {
@@ -45,6 +46,7 @@ function Login() {
   };
 
   const signIn = (e) => {
+    e.preventDefault();
     setIsLoading(true);
     let user = {
       email: email,
@@ -52,7 +54,7 @@ function Login() {
     };
     AuthenticateUser(user)
       .then((res) => {
-        console.log(res);
+        setUid(res.uid);
         if (res !== undefined) {
           localStorage.setItem("token", res);
           setIsSuccess(true);
@@ -94,6 +96,7 @@ function Login() {
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
                 <span className="registerColor">
+                  <br></br>
                   ¿Aún no te registras?{" "}
                   <a onClick={handleSignup}>
                     <b>

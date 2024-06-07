@@ -1,0 +1,80 @@
+@import url('./../../App.css');
+
+.textAbout {
+    font-weight:900;
+    font-size: 70px;
+}
+
+
+
+.container-about {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    cursor: default;
+}
+
+.imageAbout {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    height: auto;
+}
+
+.iconoAbout {
+    max-width: 400px;
+}
+
+/*Escritorio*/
+@media (min-width: 1199.98px) {
+    .textAbout {
+        font-weight:900;
+        font-size: 68px;
+    }
+
+
+.container-child-about {
+    padding-left: 8%;
+    padding-right: 20%;
+}
+}
+
+/*Tablet o escritorio pequeño */
+@media (min-width: 576px) and (max-width: 1198px) {
+    .textAbout {
+        font-weight:900;
+        font-size: 50px;
+    }
+
+.container-child-about {
+    padding-left: 8%;
+}
+
+}
+
+/*Movil*/
+@media (max-width: 575.98px) {
+
+    .textAbout {
+        font-weight:900;
+        font-size: 40px;
+    }
+
+    .text-container-about {
+       text-align: center;
+        padding-right: 20px;
+        justify-self: center;
+    }
+    
+
+    .container-child-about {
+        align-content: center;
+    }
+
+
+.iconoAbout {
+    justify-content: center;
+    max-width: 350px;
+}
+
+}

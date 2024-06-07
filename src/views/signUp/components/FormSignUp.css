@@ -4,54 +4,158 @@ body {
     background-color: #F1F1F1;
 }
 
-button, a {
-    cursor: pointer;
+.container-singup{
+    padding-top: 5%;
+    
 }
+
+
+.container-child-singup {
+    
+    padding-left: calc(var(--margin-extra-large) + 5%);
+    padding-right: calc(var(--margin-extra-large) + 5%);
+    padding-bottom: 3.8%;
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 50px; 
+}
+
+
+.btn-primary  {
+    cursor: pointer;
+    transition: all .5s ease;
+    color: var(--primary-color);
+    border: 3px solid var(--primary-color);
+    font-family:'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    background-color : transparent;
+    padding: 10px;
+    outline: none;
+    border-radius: 20px;
+    width: 83%;
+}
+
+.btn-primary:hover {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+
 
 .title-form {
     color: var(--primary-color);
 }
 
-.container-child-singup {
-    align-items: center;
-    text-align: center;
-    margin-left: 50px;
+.img-register-driver {
+    max-width: 45%;
 }
 
-.card-form {
-    background-color: var(--white-color);
-    margin-top: 20px;
-    border-radius: 20px;
-    padding: 20px;
-    height: 600px;
+.img-register-passenger {
+    max-width: 50%;
 }
+
+.card-form-sign {
+    background-color: var(--white-color);
+    border-radius: 20px;
+    height: 450px;
+}
+
+.input-form {
+    font-family: "Poppins", sans-serif;
+    height: 40px;
+    width: 270px;
+    margin: 3px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 3px solid #F1F1F1;
+}
+
 
 #alert-dialog-title, #alert-dialog-description {
     font-family: "Poppins", sans-serif;
 }
-
-.img-register {
+.img-register{ 
+    position: absolute;
     bottom: 0;
     right: 0;
-    width: 900px;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
+    max-height: 86%;
+    border-radius: 20px;
 }
 
-@media (min-width: 968px) {
-    .card-form {
-        margin-top: 50px !important;
-        max-width: 700px;
-        height: 480px;
+
+
+
+/*Tablet o escritorio pequeño */
+
+@media (min-width: 901px) and (max-width: 1198px) {
+    .input-form {
+        max-width:  80%;
+    }
+    .input-form.select-form-sign {
+        max-width:  90%;
+    }
+    
+}
+
+@media (min-width: 576px) and (max-width: 900px) {
+    .container-singup{
+        justify-content: center;
+    }
+    
+    .css-a5rdam-MuiGrid-root > .MuiGrid-item {
+        padding-right: 0% !important;
+      }
+
+    .container-child-singup {
+        justify-content: center;
+        align-items: center;
+        padding-left: var(--margin-extra-large);
+        padding-right: var(--margin-extra-large);
+        margin-left: 0px; 
+    }
+
+    .card-form-sign {
+        background-color: var(--white-color);
+        border-radius: 20px;
+        height: 450px;
+    }
+
+    .input-form {
+        max-width:  80%;
+    }
+    .input-form.select-form-sign {
+        max-width:  90%;
     }
 }
 
-@media (max-width: 967px) {
-    .card-form {
-        margin-top: 50px !important;
-        max-width: 700px;
+
+/*Movil*/
+@media (max-width: 575.98px) {
+
+    .css-a5rdam-MuiGrid-root > .MuiGrid-item {
+        padding-right: 0% !important;
+      }
+    .input-form {
+        max-width:  60%;
+    }
+    .input-form.select-form-sign {
+        max-width:  70%;
+    }
+    .card-form-sign {
+        background-color: var(--white-color);
+        border-radius: 20px;
         height: 650px;
-        margin-bottom: 80px !important;
+    }
+
+    .input-form {
+        max-width:  100%;
+    }
+    .input-form.select-form {
+        max-width:  100%;
     }
 }

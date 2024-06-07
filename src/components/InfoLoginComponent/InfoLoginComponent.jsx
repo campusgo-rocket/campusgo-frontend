@@ -37,12 +37,12 @@ function InfoLoginComponent() {
   }
 
   return (
-    <Container maxWidth="xl" className='container-info-login poppins-light' sx={{height: '100vh'}}>
+    <Container maxWidth="xl" className='container-info-login poppins-light'>
         <Grid container spacing={1} className='container-child'>
             <Grid item xs={12} textAlign={'center'}>
                 <h2>Elige la opción que más se adapte a ti</h2>
             </Grid>
-            <Grid item xs={12} md={6}>         
+            <Grid item xs={12 }  md={6} >         
                 <CardInfoComponent userObject={itemsDriver} handleNavidate={handleNavidateDriver}/>
             </Grid>
             <Grid item xs={12} md={6} >

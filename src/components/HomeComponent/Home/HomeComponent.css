@@ -1,4 +1,4 @@
-@import url('./../../App.css');
+
 
 h1 {
     margin-top: var(--margin-extra-large);
@@ -11,25 +11,29 @@ h1 {
     margin-top: var(--margin-extra-large);
 }
 
-.container {
+.container-homep {
     background-color: var(--primary-color);
     color: var(--white-color);
     cursor: default;
-    height: 600px !important;
+    height: 570px !important;
 }
 
-.icon {
+.icon-homep {
     cursor: pointer;
 }
 
-.icon:hover {
-    transform: scale(1.1);
+.icon-homep:hover {
+    transform: scale(1);
 }
 
-.imageLanding {
-    height: 650px;
-    padding-right: 0% !important;
+.imageLanding-homep {
+    position: absolute;
+    bottom: 1%;
+    right: 0;
+    max-width: 35%;
+    height: auto;
 }
+    
 
 /*Escritorio*/
 @media (min-width: 1199.98px) {
@@ -39,7 +43,7 @@ h1 {
     h2 {
         font-size: var(--font-size-medium);
     }
-    .container-child {
+    .container-child-homep {
         padding-left: var(--margin-extra-large);
         padding-right: var(--margin-extra-large);
         padding-bottom: 0%;
@@ -55,16 +59,17 @@ h1 {
     h2 {
         font-size: var(--font-size-small);
     }
-    .container {
+    .container-homep {
         height: 520px !important;
     }
-    .container-child {
+    .container-child-homep {
         padding-left: var(--margin-extra-large);
         padding-right: var(--margin-extra-large);
         padding-bottom: 0px;
     }
-    .imageLanding {
-        height: 561px;
+    .imageLanding-homep {
+        max-width: 32%;
+        padding-bottom:5%;
     }
 }
 
@@ -76,10 +81,10 @@ h1 {
     h2 {
         font-size: var(--font-size-small);
     }
-    .container {
+    .container-homep {
         height: 520px !important;
     }
-    .container-child {
+    .container-child-homep {
         padding-left: var(--margin-large);
         padding-right: var(--margin-large);
         padding-bottom: var(--margin-large);

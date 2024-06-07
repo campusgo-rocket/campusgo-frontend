@@ -10,11 +10,13 @@ function CardInfoComponent({userObject, handleNavidate }) {
   return (
     userObject ? 
         <Box className="mi-componente">
-            <Box className="fondo">
-                <Box className="contenido">
-                    <h2>{userObject.title}</h2>
+            <buttonCard onClick={handleNavidate} className="boton-imagen">
+                <Box className="fondo">
+                    <Box className="contenido">
+                        <h2>{userObject.title}</h2>
+                    </Box>
                 </Box>
-            </Box>
+            </buttonCard>
             <Box className="descripcion">
                 <h3>{userObject.subtitle}</h3>
                 <Box sx={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
@@ -24,7 +26,7 @@ function CardInfoComponent({userObject, handleNavidate }) {
                                 <Box sx={{display:'flex',  alignItems: 'center', gap:2, justifyContent:'flex-start', textAlign:'justify', mt:1}} key={index}>
                                     <SvgIcon component={DirectionsCarIcon} fontSize="medium"/>
                                     <Typography sx={{}}>{list}</Typography>
-                                 </Box>
+                                </Box>
                             ))
                         }    
                     </Box>

@@ -1,17 +1,18 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AppBarComponent from "./components/AppBarComponent/AppBarComponent";
-import SectionHome from "./views/landingPage/SectionHome";
-import SectionRegisterLogin from "./views/landingPage/SectionRegisterLogin";
-import SectionSignUp from "./views/signUp/SectionSignUp";
-import SectionTerms from "./views/Terms/SectionTerms";
-import { ProfileComponent } from "./views/profile/Profile";
-import SectionLogin from "./views/login/SectionLogin";
-import { FooterComponent } from "./components/FooterComponent/FooterComponent";
-
-import { UserProvider } from "./contexts/userContext";
-import { SectionVehicle } from "./views/signUp/SectionVehicle";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AppBarComponent from './components/AppBarComponent/AppBarComponent'
+import SectionHome from './views/landingPage/SectionHome'
+import SectionRegisterLogin from './views/landingPage/SectionRegisterLogin'
+import SectionSignUp from './views/signUp/SectionSignUp'
+import SectionTerms from './views/terms/SectionTerms'
+import SectionAbout from './views/aboutUs/SectionAboutUs'
+import InfoHome from './components/HomeComponent/infoHome/InfoHomeComponent'
+import TermsHome from './components/HomeComponent/termsHome/HomeTermsComponent'
+import { ProfileComponent } from './views/profile/Profile'
+import SectionLogin from './views/login/SectionLogin'
+import { FooterComponent } from './components/FooterComponent/FooterComponent'
+import { UserProvider } from './contexts/userContext'
+import { SectionVehicle } from './views/signUp/SectionVehicle'
 import { SectionTripInfo } from "./views/tripInfo/SectionTripInfo";
-import Mapa from "./views/Mapa/Map";
 
 function App() {
   return (
@@ -25,21 +26,24 @@ function App() {
               <>
                 <SectionHome />
                 <SectionRegisterLogin />
+                <InfoHome/>
+                <TermsHome/>
               </>
-            }
-          ></Route>
-          <Route path="login" element={<SectionLogin />} />
-          <Route path="Terms" element={<SectionTerms />} />
-          <Route path="signup/driver" element={<SectionSignUp />} />
-          <Route path="signup/passenger" element={<SectionSignUp />} />
-          <Route path="/user/profile/:userId" element={<ProfileComponent />} />
-          <Route path="driver/vehicle/:userId" element={<SectionVehicle />} />
-          <Route path="user/trip/info" element={<SectionTripInfo />} />
-        </Routes>
-        <FooterComponent />
-      </BrowserRouter>
-    </UserProvider>
-  );
+            }>
+            </Route>
+            <Route path="aboutus" element={<SectionAbout />} />
+            <Route path="login" element={<SectionLogin />} />
+            <Route path="terms" element={<SectionTerms />} />
+            <Route path="signup/driver" element={<SectionSignUp />} />
+            <Route path="signup/passenger" element={<SectionSignUp />} />
+            <Route path="user/profile/:userId" element={<ProfileComponent />} />
+            <Route path="driver/vehicle/:userId" element={<SectionVehicle />} />
+            <Route path="user/trip/info" element={<SectionTripInfo />} />
+          </Routes>
+          <FooterComponent /> 
+        </BrowserRouter>
+      </UserProvider>
+  )
 }
 
 export default App;
