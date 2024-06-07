@@ -43,6 +43,8 @@ function AppBarComponent() {
       navigate(`/aboutus`);
     } else if (page === 'Términos y condiciones') {
       navigate(`/terms`);
+    } else {
+      console.log('Sobre nosotros');
     }
   };
 
