@@ -31,12 +31,14 @@ button, a {
 }
 
 .img-register {
+    position: absolute;
     bottom: 0;
     right: 0;
-    width: 900px;
-    height: 100%;
-    object-fit: cover;
+    max-height: 86%;
+    border-radius: 20px;
+    pointer-events: none; /* Esto hace que la imagen no sea focuseable por el mouse */
 }
+
 
 .input-form {
     /* Other styling for input-form */

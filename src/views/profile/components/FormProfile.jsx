@@ -6,7 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
 import { postUser, postDriver, postPassenger, getUser, putUser } from './../../../services/authService';
 import ImagePortrait from '../../../assets/images/fondo_registro.png';
-import './FormSignUp.css';
+import './FormProfile.css';
 
 import { useUser } from "../../../contexts/userContext";
 
