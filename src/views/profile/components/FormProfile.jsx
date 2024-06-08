@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // Importa useParams
-import { Button, Container, DialogActions, DialogContent, DialogContentText, FormControl, Grid, TextField } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button, Container, DialogActions, DialogContent, DialogContentText, FormControl, Grid } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { LoadingComponent } from "../../../components/LoadingComponent/Loading";
 import { postUser, postDriver, postPassenger, getUser, putUser } from './../../../services/authService';
 import ImagePortrait from '../../../assets/images/fondo_registro.png';
-import './FormSignUp.css';
+import './FormProfile.css';
 
 import { useUser } from "../../../contexts/userContext";
 
@@ -15,10 +15,9 @@ function EditProfile() {
     const { userType } = useUser();
     const [typeUser, setTypeUser] = useState('');
     const [typeUserSpanish, setTypeUserSpanish] = useState('');
-
-    // Utiliza useParams para obtener el userId de la URL
     const { userId } = useParams();
 
+    const [savedUid, setSavedUid] = useState('');
     const [formValues, setFormValues] = useState({
         firstName: '',
         lastName: '',
@@ -30,6 +29,7 @@ function EditProfile() {
         phoneNumber: '',
     });
 
+    const [isEditable, setIsEditable] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -48,7 +48,7 @@ function EditProfile() {
         // Fetch user data
         const fetchUserData = async () => {
             try {
-                const userData = await getUser(userId); // Usar userId obtenido de la URL
+                const userData = await getUser(userId);
                 setFormValues({
                     firstName: userData.data.first_name,
                     lastName: userData.data.last_name,
@@ -74,6 +74,10 @@ function EditProfile() {
         }));
     };
 
+    const toggleEdit = () => {
+        setIsEditable((prev) => !prev);
+    };
+
     const saveUser = async (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -94,7 +98,7 @@ function EditProfile() {
                 setIsSuccess(true);
             } else {
                 const res = await postUser(user);
-                setuserId(res.userId);
+                setSavedUid(res.userId);
                 localStorage.setItem('userId', res.userId);
                 if (typeUser === 'driver') {
                     await postDriver({ userId: res.userId });
@@ -107,16 +111,17 @@ function EditProfile() {
             setIsError(true);
         } finally {
             setIsLoading(false);
+            setIsEditable(false);
         }
     };
 
     const handleClose = () => {
         setIsError(false);
         setIsSuccess(false);
-    }
+    };
 
     const handleSuccess = () => {
-        navigate(`/user/profile/${userId}`); // Redirige a la página de perfil
+        navigate(`/user/profile/${savedUid}`);
     };
 
     return (
@@ -131,34 +136,37 @@ function EditProfile() {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input
-                                        className="input-form"
+                                        className={`input-form ${!isEditable && 'readonly-input'}`}
                                         name="firstName"
                                         onChange={handleChange}
                                         value={formValues.firstName}
                                         placeholder={formValues.firstName}
+                                        readOnly={!isEditable}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input
-                                        className="input-form"
+                                        className={`input-form ${!isEditable && 'readonly-input'}`}
                                         name="lastName"
                                         onChange={handleChange}
                                         value={formValues.lastName}
                                         placeholder={formValues.lastName}
+                                        readOnly={!isEditable}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input
-                                        className="input-form"
+                                        className={`input-form ${!isEditable && 'readonly-input'}`}
                                         name="phoneNumber"
                                         onChange={handleChange}
                                         value={formValues.phoneNumber}
                                         placeholder={formValues.phoneNumber}
+                                        readOnly={!isEditable}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input
-                                        className="input-form readonly-input"
+                                        className={`input-form ${true && 'readonly-input'}`}
                                         name="email"
                                         value={formValues.email}
                                         placeholder={formValues.email}
@@ -168,7 +176,7 @@ function EditProfile() {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input
-                                        className="input-form readonly-input"
+                                        className={`input-form ${true && 'readonly-input'}`}
                                         name="documentNumber"
                                         value={formValues.documentNumber}
                                         placeholder={formValues.documentNumber}
@@ -177,7 +185,7 @@ function EditProfile() {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input
-                                        className="input-form readonly-input"
+                                        className={`input-form ${true && 'readonly-input'}`}
                                         name="documentType"
                                         value={formValues.documentType}
                                         placeholder={formValues.documentType}
@@ -186,7 +194,7 @@ function EditProfile() {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <input
-                                        className="input-form readonly-input"
+                                        className={`input-form ${true && 'readonly-input'}`}
                                         name="address"
                                         value={formValues.address}
                                         placeholder={formValues.address}
@@ -197,9 +205,9 @@ function EditProfile() {
                                     <button
                                         className="btn btn-primary"
                                         type="submit"
-                                        onClick={(e) => saveUser(e)}
+                                        onClick={isEditable ? saveUser : toggleEdit}
                                     >
-                                        {typeUser === 'passenger' ? 'Registrarse' : 'Guardar Cambios'}
+                                        {isEditable ? 'Guardar Cambios' : 'Editar'}
                                     </button>
                                 </Grid>
                             </Grid>
