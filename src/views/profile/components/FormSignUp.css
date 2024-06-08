@@ -48,7 +48,7 @@ button, a {
 }
 
 .readonly-input {
-    color: #999; /* Lighter text color for read-only fields */
+    color: #888888; /* Lighter text color for read-only fields */
     background-color: #f5f5f5; /* Optional: slightly different background color */
 }
 

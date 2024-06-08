@@ -72,7 +72,7 @@ export const getUser = async (uid) => {
                 'Content-Type': 'application/json',
             },
         });
-
+        console.log(response.data)
         return response.data;
     } catch (error) {
         throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
