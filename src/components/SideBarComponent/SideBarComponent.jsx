@@ -24,11 +24,14 @@ import { Travel } from "../../views/travels/Travels";
 import { getUser } from "../../services/authService";
 import { useUser } from "../../contexts/userContext";
 
+import RouteList from "../../views/campusGo/passenger/routeList/components/RouteList";
+import ReservationsList from "../../views/campusGo/passenger/reservationList/components/ReservationList";
+
 const Perfil = () => <Profile />;
 const Viajes = () => <Travel />;
 const Solicitudes = () => <Typography paragraph>Services Solicitudes</Typography>;
 
-const Rutas = () => <Typography paragraph>Aquí va rutas</Typography>;
+const Rutas = () => <RouteList/>;
 const Reservas = () => <Typography paragraph>Aquí va reservas</Typography>;
 
 function SideBarComponent() {
@@ -66,7 +69,7 @@ function SideBarComponent() {
             case 'Rutas':
                 return <Rutas />;
             case 'Reservas':
-                return <Reservas />;
+                return <ReservationsList />;
             default:
                 return <Perfil />;
         }

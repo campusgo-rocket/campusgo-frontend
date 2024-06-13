@@ -14,7 +14,7 @@ import { UserProvider } from './contexts/userContext'
 import { SectionVehicle } from './views/signUp/SectionVehicle'
 import { SectionTripInfo } from "./views/tripInfo/SectionTripInfo";
 import RouteList from './views/campusGo/passenger/routeList/components/RouteList'
-import RouteDetail from './views/campusGo/passenger/routeList/components/RouteDetail'
+import RouteDetail from './views/campusGo/passenger/routeList/components/RouteDetailModal'
 import LocationPicker from './views/campusGo/passenger/routeList/components/LocationPicker'
 
 function App() {
@@ -44,8 +44,12 @@ function App() {
             <Route path="driver/vehicle/:userId" element={<SectionVehicle />} />
             <Route path="user/trip/info" element={<SectionTripInfo />} />
             <Route path="user/trip/mapa" element={<LocationPicker />} />
+
+
+
+            {/* <Route path="passenger/perfil/" element={<Profile />} />
             <Route path="passenger/routes/" element={<RouteList />} />
-            <Route path="passenger/route/:id" element={<RouteDetail/>} />
+            <Route path="passenger/route/:id" element={<RouteDetail/>} /> */}
           </Routes>
           {/* <FooterComponent />  */}
         </BrowserRouter>
