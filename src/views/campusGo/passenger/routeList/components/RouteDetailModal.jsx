@@ -7,7 +7,7 @@ import { Box, Typography, Button, TextField, MenuItem, Select, FormControl, Inpu
 import locationImage from '../../../../../assets/images/ubicacion.png';
 import elipse from '../../../../../assets/images/elipse.png';
 import reloj from '../../../../../assets/images/reloj-viaje.png';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useUser } from "../../../../../contexts/userContext";
 
@@ -24,13 +24,12 @@ function RouteDetailModal({ routeId, isOpen, onClose }) {
         e.preventDefault();
         const formData = {
             id_passenger: uid,
-            id_route:routeId,
+            id_route: routeId,
             seats_to_reserve: seatsCount,
-            payment_method:paymentType,
-            pick_up_point:meetingPoint,
+            payment_method: paymentType,
+            pick_up_point: meetingPoint,
             reservation_status: 'Pendiente',
-            fare:routeData.price
-
+            fare: routeData.price
         };
 
         try {
@@ -71,7 +70,7 @@ function RouteDetailModal({ routeId, isOpen, onClose }) {
     }
 
     const { data: routeData } = route;
-    const date = new Date(routeData.date._seconds * 1000);
+    const date = parseISO(routeData.date); // Parse the date string directly
     const formattedDate = format(date, 'EEEE, d MMMM - p', { locale: es });
 
     return (
@@ -102,7 +101,7 @@ function RouteDetailModal({ routeId, isOpen, onClose }) {
                         </Box>
                         <Box display="flex" alignItems="center" mt={1}>
                             <img src={elipse} alt="Waypoint" style={{ marginRight: 8 }} />
-                            <Typography>Puntos clave: {routeData.waypoints.join(', ')}</Typography>
+                            <Typography>Puntos clave: {routeData.waypoints}</Typography>
                         </Box>
                     </Box>
                     <Box mb={2}>
@@ -114,7 +113,7 @@ function RouteDetailModal({ routeId, isOpen, onClose }) {
                         </Typography>
                         <Box display="flex" alignItems="center" mt={1}>
                             <img src={elipse} alt="Meet Point" style={{ marginRight: 8 }} />
-                            <Typography>Punto de encuentro: {routeData.waypoints[0]}</Typography>
+                            <Typography>Punto de encuentro: {routeData.waypoints}</Typography>
                         </Box>
                         <Box display="flex" alignItems="center" mt={1}>
                             <img src={reloj} alt="Estimated Time" style={{ marginRight: 8 }} />

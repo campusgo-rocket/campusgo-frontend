@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import { Box, Typography } from '@mui/material';
 import location from '../../../../../assets/images/ubicacion.png';
 import elipse from '../../../../../assets/images/elipse.png';
-import { format } from 'date-fns';
+import { format, parseISO, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
 import RouteDetailModal from './RouteDetailModal';
 import { getAllRoutes } from '../../../../../services/routeService';
@@ -59,8 +59,14 @@ function RouteList() {
                         </Typography>
                         {routes.length !== 0 ? routes.map((route) => {
                             const { id, data } = route;
-                            const date = new Date(data.date._seconds * 1000);
-                            const formattedDate = format(date, 'EEEE, d MMMM - p', { locale: es });
+                            const parsedDate = parseISO(data.date);
+
+                            if (!isValid(parsedDate)) {
+                                console.error(`Fecha inválida para la ruta con ID: ${id}`);
+                                return null;
+                            }
+
+                            const formattedDate = format(parsedDate, "EEEE, d MMMM 'a las' p", { locale: es });
 
                             return (
                                 <Box className="card-info" key={id} onClick={() => handleRouteClick(id)}>
@@ -72,7 +78,7 @@ function RouteList() {
                                     <div className="dflex mt-03 font-weight-medium content-center">
                                         <img src={elipse} className="infoImages" alt="Elipse" />
                                         <div className="ml-03">
-                                            Puntos clave: {data.waypoints.join(', ')}
+                                            Puntos clave: {data.waypoints}
                                         </div>
                                     </div>
                                 </Box>

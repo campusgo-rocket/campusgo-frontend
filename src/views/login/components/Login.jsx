@@ -34,11 +34,11 @@ function Login() {
   };
 
   const handleSignup = () => {
-    navigate("/signup");
+    navigate("/signup/passenger");
   };
 
   const handleCreatedUser = () => {
-    navigate(`/profile`);
+    navigate(`/passenger/profile`);
     window.location.reload();
   };
 

@@ -21,7 +21,6 @@ import './SideBarComponent.css';
 import logo from './../../assets/images/logo-horizontal.png';
 import { Profile } from "../../views/profile/Profile";
 import { Travel } from "../../views/travels/Travels";
-import { Requests } from "../../views/requests/Requests";
 import { getUser } from "../../services/authService";
 import { useUser } from "../../contexts/userContext";
 
@@ -30,7 +29,7 @@ import ReservationsList from "../../views/campusGo/passenger/reservationList/com
 
 const Perfil = () => <Profile />;
 const Viajes = () => <Travel />;
-const Solicitudes = () => <Requests />
+const Solicitudes = () => <Typography paragraph>Services Solicitudes</Typography>;
 
 const Rutas = () => <RouteList/>;
 const Reservas = () => <Typography paragraph>Aquí va reservas</Typography>;
