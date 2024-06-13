@@ -1,12 +1,14 @@
 import React from "react";
 import EditProfile from "./components/FormProfile";
+import { ProfileComponent } from "./components/ProfileComponent";
 
-function ProfileComponent() {
+function Profile() {
     return (
         <>
-            <EditProfile/>
+            <ProfileComponent/>
+            {/* <EditProfile/> */}
         </>
     )
 }
 
-export { ProfileComponent };
+export { Profile };

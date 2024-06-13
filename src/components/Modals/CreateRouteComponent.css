@@ -1,0 +1,11 @@
+@import url('./../../App.css');
+
+.btn-primary {
+    width: 200px;
+}
+
+.btn-secondary {
+    width: 200px;
+    background-color: #969696;
+    color: white;
+}
