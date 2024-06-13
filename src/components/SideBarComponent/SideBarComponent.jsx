@@ -21,12 +21,14 @@ import './SideBarComponent.css';
 import logo from './../../assets/images/logo-horizontal.png';
 import { Profile } from "../../views/profile/Profile";
 import { Travel } from "../../views/travels/Travels";
+import { Requests } from "../../views/requests/Requests";
 import { getUser } from "../../services/authService";
 import { useUser } from "../../contexts/userContext";
 
+
 const Perfil = () => <Profile />;
 const Viajes = () => <Travel />;
-const Solicitudes = () => <Typography paragraph>Services Solicitudes</Typography>;
+const Solicitudes = () => <Requests />
 
 const Rutas = () => <Typography paragraph>Aquí va rutas</Typography>;
 const Reservas = () => <Typography paragraph>Aquí va reservas</Typography>;

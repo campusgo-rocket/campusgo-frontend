@@ -1,6 +1,6 @@
 import { Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 import React, { useState } from "react";
-import './CreateRouteComponent.css';
+import './styles.css';
 import { postRoute } from "../../services/routesService";
 import { LoadingComponent } from "../LoadingComponent/Loading";
 

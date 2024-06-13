@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Box, Card, CardContent, Container, Typography } from "@mui/material";
+import { Avatar, Box, Card, CardContent, Container, Dialog, DialogContent, Typography } from "@mui/material";
 import Grid from '@mui/material/Grid';
 import { getUser } from "../../../services/authService";
 import { getVehicle } from "../../../services/vehicleService";
 
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { useUser } from "../../../contexts/userContext";
+import { EditProfileComponent } from "../../../components/Modals/EditProfileComponent";
 
 function ProfileComponent() {
 
@@ -29,45 +30,57 @@ function ProfileComponent() {
     const [isDriver, setIsDriver] = useState(false);
     // const [isPassenger, setIsPassenger] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await getUser(uid);
-                const data = res.data;
-    
-                setFirstName(data.first_name);
-                setLastName(data.last_name);
-                setDocumentType(data.document_type);
-                setDocumentNumber(data.document_number);
-                setEmail(data.email);
-                setPhoneNumber(data.phone_number);
-                setAddress(data.address);
-                setIsDriver(data.isDriver);
-
-                if (data.isDriver) {
-                    const idDriver = data.id_driver._path.segments[1];
-                    localStorage.setItem('idDriver', idDriver);
-                    const idVehicle = data.driverData.id_vehicle._path.segments[1];
-                    const vehicleRes = await getVehicle(idVehicle);
-                    const vehicleData = vehicleRes.data;
-                    setColor(vehicleData.color);
-                    setMake(vehicleData.make);
-                    setModel(vehicleData.model);
-                    setPlateNumber(vehicleData.plate_number);
-                    setTypeVehicle(vehicleData.type_vehicle);
-                    setYear(vehicleData.year);
-                }
-    
-                setProfilePhoto(data.url_profile_photo);
-            } catch (error) {
-                setIsError(true);
-            }
-        };
-    
         fetchData();
-    }, [uid]);
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const res = await getUser(uid);
+            const data = res.data;
+
+            setFirstName(data.first_name);
+            setLastName(data.last_name);
+            setDocumentType(data.document_type);
+            setDocumentNumber(data.document_number);
+            setEmail(data.email);
+            setPhoneNumber(data.phone_number);
+            setAddress(data.address);
+            setIsDriver(data.isDriver);
+
+            if (data.isDriver) {
+                const idDriver = data.id_driver._path.segments[1];
+                localStorage.setItem('idDriver', idDriver);
+                const idVehicle = data.driverData.id_vehicle._path.segments[1];
+                const vehicleRes = await getVehicle(idVehicle);
+                const vehicleData = vehicleRes.data;
+                setColor(vehicleData.color);
+                setMake(vehicleData.make);
+                setModel(vehicleData.model);
+                setPlateNumber(vehicleData.plate_number);
+                setTypeVehicle(vehicleData.type_vehicle);
+                setYear(vehicleData.year);
+            }
+
+            setProfilePhoto(data.url_profile_photo);
+        } catch (error) {
+            setIsError(true);
+        }
+    };
     
+    const handleClickOpen = () => {
+        setIsEdit(true);
+    };
+
+    const handleClose = () => {
+        setIsEdit(false);
+    };
+
+    const handleEdit = () => {
+        fetchData();
+    }
 
     return(
         <>
@@ -168,6 +181,13 @@ function ProfileComponent() {
                 )}
             </Container>}
             {isError && <p>Error al cargar la información.</p>}
+            {isEdit && (
+                <Dialog open={isEdit} onClose={handleClose} maxWidth="md" fullWidth>
+                    <DialogContent>
+                        <EditProfileComponent handleClose={handleClose} handleCreate={handleEdit}/>
+                    </DialogContent>
+                </Dialog>
+            )}
         </>
     )
 }

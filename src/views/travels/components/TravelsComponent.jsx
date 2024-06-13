@@ -16,7 +16,7 @@ function TravelComponent() {
 
     useEffect(() => {
         fetchData();
-    }, [idDriver]);
+    }, []);
 
     const fetchData = async () => {
         try {
@@ -61,7 +61,6 @@ function TravelComponent() {
     };
 
     const handleCreate = () => {
-        // setIsCreate(false);
         fetchData();
     }
 
