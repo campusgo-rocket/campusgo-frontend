@@ -79,6 +79,20 @@ export const getUser = async (uid) => {
     }
 };
 
+export const getDriver = async (id) => {
+    try {
+        const response = await axios.get(`${urlApi}/auth/readDriver/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
+    }
+};
+
 export const putUser = async (id, user) => {
     try {
         const response = await axios.put(`${urlApi}/auth/updateUser/${id}`, user, {
@@ -103,6 +117,7 @@ export const signIn = async (user) => {
         );
         const loggedInUser = userCredential.user;
         const idToken = await loggedInUser.getIdToken();
+        
         const response = await fetch(`${urlApi}/auth/verifyToken`, {
             method: "POST",
             headers: {
@@ -110,9 +125,10 @@ export const signIn = async (user) => {
             },
             body: JSON.stringify({ idToken }),
         });
-
         const data = await response.json();
         if (data) {
+            localStorage.setItem('isLogged', true);
+            localStorage.setItem('uid', data.uid);
             return data;
         }
     } catch (error) {

@@ -14,12 +14,13 @@ import { useUser } from '../../contexts/userContext';
 import { useNavigate } from 'react-router-dom';
 
 import logo from './../../assets/images/logo-horizontal.png';
+import { SideBarComponent } from '../SideBarComponent/SideBarComponent';
 
 const pages = ['Pasajero', 'Conductor', 'Sobre nosotros', 'Términos y condiciones'];
 
 function AppBarComponent() {
 
-  const { setUserType } = useUser();
+  const { setUserType, isLogged } = useUser();
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -49,98 +50,105 @@ function AppBarComponent() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: '#e20001', height: '14vh'}}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Poppins, sans-serif',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              paddingLeft: { md: '90px' },
-              lineHeight: '2px'
-            }}
-          >
-            <img className='logo-bar' src={logo} alt="" />
-          </Typography>
+    <>
+      {!isLogged &&
+        <AppBar position="static" sx={{ backgroundColor: '#e20001', height: '14vh' }}>
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                  paddingLeft: { md: '90px' },
+                  lineHeight: '2px'
+                }}
+              >
+                <img className='logo-bar' src={logo} alt="" />
+              </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={() => handleButtonPage(page)}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'Poppins, sans-serif',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <img className='logo-bar' src={logo} alt="" />
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, paddingLeft: { md: '20px' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => handleButtonPage(page)}
-                className='poppins-regular'
-                sx={{ mx: 1, my: 4, color: 'white', display: 'block', textTransform: 'none', fontFamily: 'Poppins, sans-serif', fontSize: '18px', lineHeight: '20px' }}
+              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
                 >
-                {page}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                  }}
+                >
+                  {pages.map((page) => (
+                    <MenuItem key={page} onClick={() => handleButtonPage(page)}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href="#app-bar-with-responsive-menu"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'flex', md: 'none' },
+                  flexGrow: 1,
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                <img className='logo-bar' src={logo} alt="" />
+              </Typography>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, paddingLeft: { md: '20px' } }}>
+                {pages.map((page) => (
+                  <Button
+                    key={page}
+                    onClick={() => handleButtonPage(page)}
+                    className='poppins-regular'
+                    sx={{ mx: 1, my: 4, color: 'white', display: 'block', textTransform: 'none', fontFamily: 'Poppins, sans-serif', fontSize: '18px', lineHeight: '20px' }}
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      }
+      {!!isLogged && 
+          <SideBarComponent />
+      }
+    </>
   );
 }
 export default AppBarComponent;

@@ -39,6 +39,7 @@ function Login() {
 
   const handleCreatedUser = () => {
     navigate(`/user/profile/${uid}`);
+    window.location.reload();
   };
 
   const handleClose = () => {
