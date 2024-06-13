@@ -21,18 +21,32 @@ import './SideBarComponent.css';
 import logo from './../../assets/images/logo-horizontal.png';
 import { Profile } from "../../views/profile/Profile";
 import { Travel } from "../../views/travels/Travels";
+import { getUser } from "../../services/authService";
+import { useUser } from "../../contexts/userContext";
 
 const Perfil = () => <Profile />;
 const Viajes = () => <Travel />;
 const Solicitudes = () => <Typography paragraph>Services Solicitudes</Typography>;
 
+const Rutas = () => <Typography paragraph>Aquí va rutas</Typography>;
+const Reservas = () => <Typography paragraph>Aquí va reservas</Typography>;
+
 function SideBarComponent() {
     const drawerWidth = 240;
+
+    const { uid } = useUser();
     const [selectedComponent, setSelectedComponent] = useState('Home');
     const [mobileOpen, setMobileOpen] = useState(false);
+
+    const [firstName, setFirstName] = useState('');
+    const [profilePhoto, setProfilePhoto] = useState('');
+
+    const [isDriver, setIsDriver] = useState(false);
+    const [isPassenger, setIsPassenger] = useState(false);
+
     const navigate = useNavigate();
 
-    const renderComponent = () => {
+    const renderComponentDriver = () => {
         switch (selectedComponent) {
             case 'Home':
                 return <Perfil />;
@@ -45,13 +59,37 @@ function SideBarComponent() {
         }
     };
 
+    const renderComponentPassenger = () => {
+        switch (selectedComponent) {
+            case 'Home':
+                return <Perfil />;
+            case 'Rutas':
+                return <Rutas />;
+            case 'Reservas':
+                return <Reservas />;
+            default:
+                return <Perfil />;
+        }
+    }
+
     useEffect(() => {
         // Check if user is logged out
         if (!localStorage.getItem('uid')) {
             navigate('/login');
             window.location.reload();
         }
-    }, [navigate]);
+        getUser(uid)
+        .then(res => {
+            const data = res.data;
+            setFirstName(data.first_name);
+            setProfilePhoto(data.url_profile_photo);
+            if (data.isDriver) {
+                setIsDriver(true);
+            } else {
+                setIsPassenger(true);
+            }
+        })
+    }, []);
 
     const logout = () => {
         localStorage.clear();
@@ -68,11 +106,13 @@ function SideBarComponent() {
             <Box display="flex" alignItems="center" padding="16px" marginTop={10}>
                 <Avatar
                     sx={{ width: 56, height: 56 }}
+                    src={profilePhoto}
                 /><br></br>
                 <Typography variant="h9" sx={{ marginLeft: 2 }} className="poppins-regular">
-                    Maria Paula
+                    {firstName}
                 </Typography>
             </Box>
+            {isDriver && 
             <div style={{ overflow: 'auto' }}>
                 <List>
                     {['Mi perfil', 'Viajes', 'Solicitudes'].map((text, index) => (
@@ -81,7 +121,17 @@ function SideBarComponent() {
                         </ListItem>
                     ))}
                 </List>
-            </div>
+            </div>}
+            {isPassenger && 
+            <div style={{ overflow: 'auto' }}>
+                <List>
+                    {['Mi perfil', 'Rutas', 'Reservas'].map((text, index) => (
+                        <ListItem button key={text} onClick={() => setSelectedComponent(text)} className="poppins-regular">
+                            <ListItemText primary={text} className="poppins-regular" />
+                        </ListItem>
+                    ))}
+                </List>
+            </div>}
         </Container>
     );
 
@@ -156,10 +206,16 @@ function SideBarComponent() {
                     {drawer}
                 </Drawer>
             </Box>
-            <main style={{ flexGrow: 1, padding: 24, marginLeft: { xs: 0, md: drawerWidth } }}>
+            {isDriver && 
+                <main style={{ flexGrow: 1, padding: 24, marginLeft: { xs: 0, md: drawerWidth } }}>
                 <Toolbar />
-                {renderComponent()}
-            </main>
+                {renderComponentDriver()}
+            </main>}
+            {isPassenger && 
+                <main style={{ flexGrow: 1, padding: 24, marginLeft: { xs: 0, md: drawerWidth } }}>
+                <Toolbar />
+                {renderComponentPassenger()}
+            </main>}
         </div>
     );
 }
