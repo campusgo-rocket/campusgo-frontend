@@ -119,3 +119,12 @@ export const signIn = async (user) => {
         throw new Error(`Error signing in: ${error.message}`);
     }
 };
+
+export const getDriverById = async (id) => {
+    try {
+        const response = await axios.get(`${urlApi}/auth/readDriver/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
+    }
+};

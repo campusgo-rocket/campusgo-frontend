@@ -16,3 +16,11 @@ export const postVehicle = async (idDriver) => {
     }
 };
 
+export const getVehicleByDriverId = async (driverId) => {
+    try {
+        const response = await axios.get(`${urlApi}/vehicle/readVehicle/${driverId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
+    }
+};
