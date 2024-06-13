@@ -1,7 +1,6 @@
+import React, { useEffect, useState } from "react";
 import { Avatar, Box, Card, CardContent, Container, Typography } from "@mui/material";
 import Grid from '@mui/material/Grid';
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { getUser } from "../../../services/authService";
 import { getVehicle } from "../../../services/vehicleService";
 
@@ -45,8 +44,10 @@ function ProfileComponent() {
                 setPhoneNumber(data.phone_number);
                 setAddress(data.address);
                 setIsDriver(data.isDriver);
-    
+
                 if (data.isDriver) {
+                    const idDriver = data.id_driver._path.segments[1];
+                    localStorage.setItem('idDriver', idDriver);
                     const idVehicle = data.driverData.id_vehicle._path.segments[1];
                     const vehicleRes = await getVehicle(idVehicle);
                     const vehicleData = vehicleRes.data;
@@ -95,7 +96,6 @@ function ProfileComponent() {
                             <EditNoteIcon style={{cursor: 'pointer'}} />&nbsp;
                             <b><h3>Información personal</h3></b>
                         </Box>
-                        <b><h3>Información personal</h3></b>
                         <Grid container spacing={2}>
                             <Grid item xs={6}>
                                 <b><b>Nombres</b></b>
@@ -166,7 +166,7 @@ function ProfileComponent() {
                     </Card>
                 )}
             </Container>}
-            {isError && <p>Error al cargar los datos.</p>}
+            {isError && <p>Error al cargar la información.</p>}
         </>
     )
 }
