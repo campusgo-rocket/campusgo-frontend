@@ -18,7 +18,7 @@ export function UserProvider({ children }) {
     const [isLogged, setIsLogged] = useState(() => {
         const storedIsLogged = localStorage.getItem('isLogged');
         return storedIsLogged ? storedIsLogged : false;
-    })
+    });
 
     return (
         <UserContext.Provider value={{

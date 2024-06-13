@@ -85,6 +85,7 @@ function ProfileComponent() {
                                 <br></br>
                                 <b><h3>{firstName + ' ' + lastName}</h3></b>
                                 {isDriver && <p>Conductor</p>}
+                                {!isDriver && <p>Pasajero</p>}
                             </Typography>
                         </Box>
                     </CardContent>
