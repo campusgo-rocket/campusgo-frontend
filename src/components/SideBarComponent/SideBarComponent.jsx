@@ -21,6 +21,7 @@ import './SideBarComponent.css';
 import logo from './../../assets/images/logo-horizontal.png';
 import { Profile } from "../../views/profile/Profile";
 import { Travel } from "../../views/travels/Travels";
+import { Requests } from "../../views/requests/Requests";
 import { getUser } from "../../services/authService";
 import { useUser } from "../../contexts/userContext";
 
@@ -29,7 +30,7 @@ import ReservationsList from "../../views/campusGo/passenger/reservationList/com
 
 const Perfil = () => <Profile />;
 const Viajes = () => <Travel />;
-const Solicitudes = () => <Typography paragraph>Services Solicitudes</Typography>;
+const Solicitudes = () => <Requests />
 
 const Rutas = () => <RouteList/>;
 const Reservas = () => <Typography paragraph>Aquí va reservas</Typography>;
@@ -118,7 +119,7 @@ function SideBarComponent() {
             {isDriver && 
             <div style={{ overflow: 'auto' }}>
                 <List>
-                    {['Mi perfil', 'Viajes', 'Solicitudes'].map((text, index) => (
+                    {['Mi perfil', 'Viajes', 'Solicitudes'].map((text) => (
                         <ListItem button key={text} onClick={() => setSelectedComponent(text)} className="poppins-regular">
                             <ListItemText primary={text} className="poppins-regular" />
                         </ListItem>
@@ -128,7 +129,7 @@ function SideBarComponent() {
             {isPassenger && 
             <div style={{ overflow: 'auto' }}>
                 <List>
-                    {['Mi perfil', 'Rutas', 'Reservas'].map((text, index) => (
+                    {['Mi perfil', 'Rutas', 'Reservas'].map((text) => (
                         <ListItem button key={text} onClick={() => setSelectedComponent(text)} className="poppins-regular">
                             <ListItemText primary={text} className="poppins-regular" />
                         </ListItem>

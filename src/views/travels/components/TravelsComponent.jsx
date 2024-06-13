@@ -15,34 +15,42 @@ function TravelComponent() {
     const [isCreate, setIsCreate] = useState(false);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await getRoutes();
+        fetchData();
+    }, []);
 
-                if (data.statusCode === 200) {
-                    const filteredData = data.data.filter(item => {
-                        return item.data.id_driver._path.segments[1] === idDriver;
-                    });
-                    setFilteredData(filteredData);
-                } else {
-                    setIsError(true);
-                }
-            } catch (error) {
+    const fetchData = async () => {
+        try {
+            const data = await getRoutes();
+
+            if (data.statusCode === 200) {
+                const filteredData = data.data.filter(item => {
+                    return item.data.id_driver._path.segments[1] === idDriver;
+                });
+                setFilteredData(filteredData);
+            } else {
                 setIsError(true);
             }
+        } catch (error) {
+            setIsError(true);
+        }
+    };
+
+    const formatDate = (isoString) => {
+        const date = new Date(isoString); 
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         };
-
-        fetchData();
-    }, [idDriver]);
-
-    const formatDate = (seconds) => {
-        const date = new Date(seconds * 1000);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+        const timeOptions = {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        };
         const formattedDate = date.toLocaleDateString('es-ES', options);
         const formattedTime = date.toLocaleTimeString('es-ES', timeOptions);
         return `${formattedDate}, ${formattedTime}`;
-    }
+    };
 
     const handleClickOpen = () => {
         setIsCreate(true);
@@ -51,6 +59,10 @@ function TravelComponent() {
     const handleClose = () => {
         setIsCreate(false);
     };
+
+    const handleCreate = () => {
+        fetchData();
+    }
 
     return (
         <>
@@ -87,10 +99,10 @@ function TravelComponent() {
                                     </Box>
                                     <Box display="flex" flexDirection="column" alignItems="flex-start">
                                         <p>
-                                            {formatDate(route.data.date._seconds)}<br></br>
+                                            {formatDate(route.data.date.toLocaleString())}<br></br>
                                             <Box display="flex" alignItems="center" marginTop={1}>
                                                 <LocationOnIcon />
-                                                <b>Puntos clave:&nbsp;</b> {route.data.waypoints.join(", ")}
+                                                <b>Puntos clave:&nbsp;</b> {route.data.waypoints}
                                             </Box>
                                             <Box display="flex" alignItems="center" marginTop={1}>
                                                 <NearMeIcon />
@@ -113,7 +125,7 @@ function TravelComponent() {
             {isCreate && (
                 <Dialog open={isCreate} onClose={handleClose} maxWidth="md" fullWidth>
                     <DialogContent>
-                        <CreateRouteComponent />
+                        <CreateRouteComponent handleClose={handleClose} handleCreate={handleCreate}/>
                     </DialogContent>
                 </Dialog>
             )}
