@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route element={<LayoutWithFooter />}>
             <Route
-              path="/home"
+              path="/"
               element={
                 <>
                   <SectionHome />
