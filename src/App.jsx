@@ -7,7 +7,7 @@ import SectionTerms from './views/terms/SectionTerms'
 import SectionAbout from './views/aboutUs/SectionAboutUs'
 import InfoHome from './components/HomeComponent/infoHome/InfoHomeComponent'
 import TermsHome from './components/HomeComponent/termsHome/HomeTermsComponent'
-import { ProfileComponent } from './views/profile/Profile'
+import { Profile } from './views/profile/Profile'
 import SectionLogin from './views/login/SectionLogin'
 import { FooterComponent } from './components/FooterComponent/FooterComponent'
 import { UserProvider } from './contexts/userContext'
@@ -18,6 +18,7 @@ import RouteDetail from './views/campusGo/passenger/routeList/components/RouteDe
 import LocationPicker from './views/campusGo/passenger/routeList/components/LocationPicker'
 
 function App() {
+
   return (
     <UserProvider>
       <BrowserRouter>
@@ -39,14 +40,14 @@ function App() {
             <Route path="terms" element={<SectionTerms />} />
             <Route path="signup/driver" element={<SectionSignUp />} />
             <Route path="signup/passenger" element={<SectionSignUp />} />
-            <Route path="user/profile/:userId" element={<ProfileComponent />} />
+            {/* <Route path="user/profile/:userId" element={<SideBarComponent />} /> */}
             <Route path="driver/vehicle/:userId" element={<SectionVehicle />} />
             <Route path="user/trip/info" element={<SectionTripInfo />} />
             <Route path="user/trip/mapa" element={<LocationPicker />} />
             <Route path="passenger/routes/" element={<RouteList />} />
             <Route path="passenger/route/:id" element={<RouteDetail/>} />
           </Routes>
-          <FooterComponent /> 
+          {/* <FooterComponent />  */}
         </BrowserRouter>
       </UserProvider>
   )
