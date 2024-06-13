@@ -9,4 +9,5 @@ function SectionTerms() {
   )
 }
 
+
 export default SectionTerms
