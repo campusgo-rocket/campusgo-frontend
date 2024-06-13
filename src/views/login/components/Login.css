@@ -32,6 +32,7 @@ button, a {
 .divImageContainer{
     display: flex;
     padding-left: 5%;
+    height: 75vh;
 }
 
 .divLogin{
@@ -86,3 +87,14 @@ button, a {
     background-color: #000;
     margin-top: 5px; /* Ajusta el espacio entre el texto y la línea */
 }
+
+
+
+/*Movil*/
+@media (max-width: 575.98px) {
+    .imageDriverRegister {
+        display: none;
+    }
+}
+
+
