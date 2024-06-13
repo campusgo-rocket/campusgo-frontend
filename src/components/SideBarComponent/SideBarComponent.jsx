@@ -115,7 +115,7 @@ function SideBarComponent() {
             {isDriver && 
             <div style={{ overflow: 'auto' }}>
                 <List>
-                    {['Mi perfil', 'Viajes', 'Solicitudes'].map((text, index) => (
+                    {['Mi perfil', 'Viajes', 'Solicitudes'].map((text) => (
                         <ListItem button key={text} onClick={() => setSelectedComponent(text)} className="poppins-regular">
                             <ListItemText primary={text} className="poppins-regular" />
                         </ListItem>
@@ -125,7 +125,7 @@ function SideBarComponent() {
             {isPassenger && 
             <div style={{ overflow: 'auto' }}>
                 <List>
-                    {['Mi perfil', 'Rutas', 'Reservas'].map((text, index) => (
+                    {['Mi perfil', 'Rutas', 'Reservas'].map((text) => (
                         <ListItem button key={text} onClick={() => setSelectedComponent(text)} className="poppins-regular">
                             <ListItemText primary={text} className="poppins-regular" />
                         </ListItem>
