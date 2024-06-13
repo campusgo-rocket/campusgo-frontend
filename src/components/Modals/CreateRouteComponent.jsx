@@ -36,7 +36,7 @@ function CreateRouteComponent() {
     };
 
     return (
-        <Container maxWidth="sm" className="hola">
+        <Container maxWidth="sm">
             <h2>Mis viajes</h2>
             <form onSubmit={handleSubmit}>
                 <TextField
