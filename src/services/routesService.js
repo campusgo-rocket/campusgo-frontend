@@ -15,3 +15,17 @@ export const getRoutes = async () => {
         throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
     }
 };
+
+export const postRoute = async (id) => {
+    try {
+        const response = await axios.post(`${urlApi}/route/createRoute`, id, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error de respuesta del servidor: ${error.response.data}`);
+    }
+};

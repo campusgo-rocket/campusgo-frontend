@@ -7,7 +7,6 @@ import SectionTerms from './views/terms/SectionTerms'
 import SectionAbout from './views/aboutUs/SectionAboutUs'
 import InfoHome from './components/HomeComponent/infoHome/InfoHomeComponent'
 import TermsHome from './components/HomeComponent/termsHome/HomeTermsComponent'
-import { Profile } from './views/profile/Profile'
 import SectionLogin from './views/login/SectionLogin'
 import { FooterComponent } from './components/FooterComponent/FooterComponent'
 import { UserProvider } from './contexts/userContext'
@@ -37,11 +36,10 @@ function App() {
             <Route path="terms" element={<SectionTerms />} />
             <Route path="signup/driver" element={<SectionSignUp />} />
             <Route path="signup/passenger" element={<SectionSignUp />} />
-            {/* <Route path="user/profile/:userId" element={<SideBarComponent />} /> */}
             <Route path="driver/vehicle/:userId" element={<SectionVehicle />} />
             <Route path="user/trip/info" element={<SectionTripInfo />} />
           </Routes>
-          {/* <FooterComponent />  */}
+          <FooterComponent /> 
         </BrowserRouter>
       </UserProvider>
   )

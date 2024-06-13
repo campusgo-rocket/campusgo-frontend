@@ -38,7 +38,7 @@ function Login() {
   };
 
   const handleCreatedUser = () => {
-    navigate(`/user/profile/${uid}`);
+    navigate(`/profile`);
     window.location.reload();
   };
 
